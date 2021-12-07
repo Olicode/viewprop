@@ -1,5 +1,7 @@
 <div class="container mt-3">
   <h1>Show page of '<%= @listing.title %>'</h1>
+  <%= link_to "Edit", edit_listing_path(@listing) %>
 
-  <%= link_to "All listings", listings_path %>
+  <hr>
+  <%= link_to "Back to all listings", listings_path %>
 </div>

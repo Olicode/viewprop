@@ -6,6 +6,8 @@
     <p><%= listing.title %> <%= link_to 'View this Listing', listing_path(listing) %></p>
   <% end %>
 
+<%= link_to "New listing", new_listing_path %>
+<hr>
 <%= link_to 'Back', root_path %>
 
 </div>
