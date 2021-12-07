@@ -1,0 +1,11 @@
+<div class="container mt-3">
+
+  <h1>listings page</h1>
+
+  <% @listings.each do |listing| %>
+    <p><%= listing.title %> <%= link_to 'View this Listing', listing_path(listing) %></p>
+  <% end %>
+
+<%= link_to 'Back', root_path %>
+
+</div>
