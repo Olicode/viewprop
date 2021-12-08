@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :listings, destroy: :dependent
+  has_many :listings, dependent: :destroy
   has_many :offers, through: :listings
 
   devise :database_authenticatable, :registerable,

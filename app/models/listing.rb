@@ -1,7 +1,7 @@
 class Listing < ApplicationRecord
   belongs_to :user
-  has_many :offers, destroy: :dependent
-  has_many :bookings, destroy: :dependent
+  has_many :offers, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
 
   validates :title, :address, :description, :price, presence: true
