@@ -2,6 +2,12 @@
 # Listing.destroy_all
 # Booking.destroy_all
 require 'faker'
+require 'database_cleaner/active_record'
+
+DatabaseCleaner.allow_production = true
+DatabaseCleaner.allow_remote_database_url = true
+DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.clean
 
 puts "Create users"
 
@@ -55,4 +61,74 @@ Listing.create!({
                   user: User.all.sample
                 })
 
-puts "Finished!"
+puts "Finished creating listings!"
+
+puts "Create bookings"
+
+Booking.create!({
+                  date: "12-04-2021",
+                  start_time: "9:30",
+                  end_time: "10:00",
+                  status: "Accepted",
+                  listing: Listing.last(4).sample,
+                  user: User.last(5).sample
+                })
+Booking.create!({
+                  date: "12-12-2021",
+                  start_time: "10:30",
+                  end_time: "11:00",
+                  status: "Pending",
+                  listing: Listing.last(4).sample,
+                  user: User.last(5).sample
+                })
+Booking.create!({
+                  date: "14-07-2021",
+                  start_time: "7:30",
+                  end_time: "08:00",
+                  status: "Rejected",
+                  listing: Listing.last(4).sample,
+                  user: User.last(5).sample
+                })
+Booking.create!({
+                  date: "12-12-2021",
+                  start_time: "13:30",
+                  end_time: "14:00",
+                  status: "Accepted",
+                  listing: Listing.last(4).sample,
+                  user: User.last(5).sample
+                })
+
+puts "Finish creating Bookings"
+
+puts "Creating offers"
+
+Offer.create!({
+                final_price: 139_000,
+                buyer_confirmed: true,
+                seller_confirmed: false,
+                listing: Listing.last(4).sample,
+                user: User.last(5).sample
+              })
+Offer.create!({
+                final_price: 289_000,
+                buyer_confirmed: true,
+                seller_confirmed: false,
+                listing: Listing.last(4).sample,
+                user: User.last(5).sample
+              })
+Offer.create!({
+                final_price: 384_000,
+                buyer_confirmed: true,
+                seller_confirmed: true,
+                listing: Listing.last(4).sample,
+                user: User.last(5).sample
+              })
+Offer.create!({
+                final_price: 284_000,
+                buyer_confirmed: false,
+                seller_confirmed: true,
+                listing: Listing.last(4).sample,
+                user: User.last(5).sample
+              })
+
+puts "Finished all offers"

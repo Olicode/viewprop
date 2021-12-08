@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Create a counter offer for <%= @listing.title %></h1>
+  <div class="form-offer">
+    <%= simple_form_for [@listing, @offer] do |f| %>
+    <%= f.input :final_price, placeholder: "#{@offer.final_price}" %>
+    <%= f.button :submit %>
+    <% end %>
+  </div>
+</div>
