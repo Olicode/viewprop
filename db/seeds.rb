@@ -26,7 +26,7 @@ puts "Creating listings..."
 
 Listing.create!({
                   title: "Canggu prime location, huge opportunity!",
-                  address: "#{Faker::Address.street_address}, Canggu, Bali",
+                  address: "Canggu, Bali",
                   description: "3 BR luxury villa",
                   price: 399.000,
                   negotiable: true,
@@ -35,7 +35,7 @@ Listing.create!({
                 })
 Listing.create!({
                   title: "Ubud quiet location, huge opportunity!",
-                  address: "#{Faker::Address.street_address}, Ubud, Bali",
+                  address: "Ubud, Bali",
                   description: "3 BR luxury villa",
                   price: 299.000,
                   negotiable: false,
@@ -44,7 +44,7 @@ Listing.create!({
                 })
 Listing.create!({
                   title: "Canggu quiet location, development opportunity!",
-                  address: "#{Faker::Address.street_address}, Canggu, Bali",
+                  address: "Canggu, Bali",
                   description: "4 BR villa",
                   price: 180.000,
                   negotiable: false,
@@ -53,7 +53,7 @@ Listing.create!({
                 })
 Listing.create!({
                   title: "Uluwatu quiet location, ocean view petite apt!",
-                  address: "#{Faker::Address.street_address}, Uluwatu, Bali",
+                  address: "Uluwatu, Bali",
                   description: "1 BR luxury apt",
                   price: 280.000,
                   negotiable: false,
