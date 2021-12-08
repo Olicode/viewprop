@@ -1,12 +1,33 @@
+.navbar {
+	justify-content: space-between;
+	h1 {
+		color: $light-grey;
+	}
+	a {
+		color: $light-grey;
+	}
+}
+
+.nav-item-sec {
+	display: flex;
+	list-style-type: none;
+	.nav-item {
+		margin: 0 36px;
+	}
+}
+
+.nav-item-prim {
+	display: flex;
+}
+
+.nav-item:hover {
+	text-decoration: underline;
+}
+
 .navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+	background: $dark-grey;
 }
 
 .navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+	flex-grow: 0;
 }
