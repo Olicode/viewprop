@@ -1,9 +1,24 @@
 <div class="container mt-3">
-  <h1>Show page of '<%= @listing.title %>'</h1>
-  <%= link_to "Edit", edit_listing_path(@listing) %>
+  <%= link_to "Back to all listings", listings_path %>
+  <h1><%= @listing.title %></h1>
+  <% if current_user == @listing.user %>
+    <%= link_to "Edit", edit_listing_path(@listing) %>
+  <% end %>
+  <h2><strong><i class="fas fa-pound-sign"></i> <%= @listing.price %></strong></h2>
+  <p>Estimated DP: <%= (@listing.price * 0.1).to_f.round(6) %>
+  <% if @listing.negotiable == false %>
+    <p><strong> Non-negotiable </strong> </p>
+  <% else %>
+    <p><strong> Negotiable </strong> </p>
+  <% end %>
+  <h3><i class="fas fa-map-pin"></i> <%= @listing.address %></h3>
+  <p><%= @listing.description %></p>
+
+  <div class="booking-offer-buttons d-flex">
+    <button><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
+    <button><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
+  </div>
+
 
   <hr>
-  <%= link_to "View this listing", new_listing_booking %>
-  <%= link_to "Place an offer", new_listing_offer  %>
-  <%= link_to "Back to all listings", listings_path %>
 </div>
