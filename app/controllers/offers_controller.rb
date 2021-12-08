@@ -18,6 +18,8 @@ class OffersController < ApplicationController
   end
 
   def edit
+    @offer = Offer.find(params[:id])
+    @listing = Listing.find(params[:listing_id])
   end
 
   def update
