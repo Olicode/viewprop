@@ -32,12 +32,16 @@ class OffersController < ApplicationController
       @offer.buyer_confirmed = true
       @offer.seller_confirmed = false
     end
-    if @offer.update(offer_params)
+    if @offer.save && @offer.update(offer_params)
       redirect_to dashboard
     else
       render 'edit'
     end
   end
+
+  # def accept
+  #   @offer = Offer.find(params)
+  # end
 
   private
 
