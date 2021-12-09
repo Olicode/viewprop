@@ -1,6 +1,15 @@
 <div class="container mt-3">
   <%= link_to "Back to all listings", listings_path %>
   <h1><%= @listing.title %></h1>
+  <% if !@listing.photos.attached? %>
+    <div></div>
+  <% else %>
+  <div class="listing-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @listing.photos.first.key, height: 300, crop: :fill %>')">
+  </div>
+  <% @listing.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+  <% end %>
   <% if current_user == @listing.user %>
     <%= link_to "Edit", edit_listing_path(@listing) %>
   <% end %>
@@ -11,12 +20,24 @@
   <% else %>
     <p><strong> Negotiable </strong> </p>
   <% end %>
-  <h3><i class="fas fa-map-pin"></i> <%= @listing.address %></h3>
+  <h3><i class="fas fa-map-marker-alt"></i> <%= @listing.address %></h3>
+
   <p><%= @listing.description %></p>
 
+  <div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+
   <div class="booking-offer-buttons d-flex">
-    <button><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
-    <button><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
+    <% if @listing.sold %>
+      <button type="button" class="btn btn-secondary btn-lg" disabled><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
+      <button type="button" class="btn btn-secondary btn-lg" disabled><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
+    <% else %>
+      <button type="button" class="btn btn-lg btn-primary"><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
+      <button type="button" class="btn btn-lg btn-primary"><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
+    <% end %>
   </div>
 
 

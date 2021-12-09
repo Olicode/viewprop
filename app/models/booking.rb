@@ -3,9 +3,9 @@ class Booking < ApplicationRecord
   belongs_to :user
 
   validates :date, :start_time, :end_time, presence: true
-  validate :end_time_cannot_be_less_than_start_time, :different_owner
+  validate :end_time_cannot_be_less_than_start_time, :different_owner, :no_booking_same_day, :no_booking_on_sold_listing
 
-  STATUS = ["Accepted, Rejected", "Pending"]
+  STATUS = ["Accepted", "Rejected", "Pending"]
 
   def end_time_cannot_be_less_than_start_time
     return unless start_time && end_time
@@ -17,6 +17,18 @@ class Booking < ApplicationRecord
   def different_owner
     if listing.user == user
       errors.add(:user, "You cannot book to view your own listing")
+    end
+  end
+
+  def no_booking_same_day
+    if !listing.bookings.where(user: self.user, date: self.date).empty?
+      errors.add(:user, "You cannot book two viewings on the same day")
+    end
+  end
+
+  def no_booking_on_sold_listing
+    if listing.sold
+      errors.add(:user, "You cannot book to view this listing")
     end
   end
 end

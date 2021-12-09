@@ -1,19 +1,9 @@
-<div class="navbar navbar-expand-sm navbar-lewagon">
+<div class="navbar navbar-light navbar-expand-sm navbar-lewagon">
   <%= link_to root_path, class: "navbar-brand" do %>
     <h1>VIEWPROP</h1>
   <% end %>
 
-  <div class="nav-item-sec">
-    <li class="nav-item">
-      <%= link_to "About us", root_path(@home, :anchor => 'about_us'), class: "nav-link" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "Benefits", root_path(@home, :anchor => 'benefits'), class: "nav-link" %>
-    </li>
-    <li class="nav-item">
-      <%= link_to "See all listings", listings_path, class: "nav-link" %>
-    </li>
-  </div>
+
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -21,6 +11,20 @@
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <div class="nav-section">
+        <li class="nav-item">
+          <%= link_to "About us", root_path(@home, :anchor => 'about_us'), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Benefits", root_path(@home, :anchor => 'benefits'), class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "See all listings", listings_path, class: "nav-link" %>
+        </li>
+      </div>
+
+
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item">
@@ -34,7 +38,7 @@
           </div>
         </li>
       <% else %>
-      <div class="nav-item-prim">
+      <div class="nav-section">
         <li class="nav-item">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>

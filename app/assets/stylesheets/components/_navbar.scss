@@ -1,14 +1,21 @@
 .navbar {
 	justify-content: space-between;
+	height: 65px;
+	background: $dark-grey;
 	h1 {
 		color: $light-grey;
 	}
-	a {
-		color: $light-grey;
+	.nav-link {
+		color: $light-grey !important;
+		margin-right: 20px;
 	}
 }
 
-.nav-item-sec {
+.nav-section {
+	margin-right: 250px;
+}
+
+.nav-section {
 	display: flex;
 	list-style-type: none;
 	.nav-item {
@@ -16,18 +23,49 @@
 	}
 }
 
-.nav-item-prim {
-	display: flex;
-}
-
 .nav-item:hover {
 	text-decoration: underline;
 }
 
-.navbar-lewagon {
-	background: $dark-grey;
-}
-
 .navbar-lewagon .navbar-collapse {
 	flex-grow: 0;
+}
+
+@media screen and (max-width: 568px) {
+	.nav-section {
+		display: block;
+		margin-top: 3%;
+		z-index: 9;
+		.nav-item {
+			margin: 0;
+			.nav-link {
+				padding: 1%;
+				color: $dark-grey;
+			}
+		}
+	}
+	#navbarSupportedContent {
+		border-radius: 8px;
+		width: 250px;
+		background-color: rgba(255, 255, 255, 0.6);
+		margin-top: 16px;
+		margin-left: 16px;
+		padding: 8px;
+		text-align: center;
+	}
+
+	#location-input-homepage {
+		max-width: 320px;
+		font-size: 0.8em;
+	}
+
+	.container {
+		padding: 40px;
+	}
+
+	.main-text {
+		input {
+			width: 300px;
+		}
+	}
 }
