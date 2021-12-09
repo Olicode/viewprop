@@ -5,6 +5,7 @@
   <%= f.input :description %>
   <%= f.input :price %>
   <%= f.input :negotiable %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit "Submit listing", class: "btn btn-info" %>
   <% end %>
 </div>

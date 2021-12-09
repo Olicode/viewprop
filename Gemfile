@@ -13,6 +13,8 @@ gem 'puma', '~> 5.0'
 gem 'devise'
 gem 'sass-rails', '>= 6'
 gem 'geocoder'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.16.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
