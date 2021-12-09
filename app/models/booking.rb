@@ -19,4 +19,10 @@ class Booking < ApplicationRecord
       errors.add(:user, "You cannot book to view your own listing")
     end
   end
+
+  # def no_booking_same_day
+  #   if listing.bookings.where(user_id == current_user)
+  #     errors.add(:user, "You cannot place two offers on the same listing")
+  #   end
+  # end
 end
