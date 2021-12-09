@@ -3,7 +3,7 @@ class Booking < ApplicationRecord
   belongs_to :user
 
   validates :date, :start_time, :end_time, presence: true
-  validate :end_time_cannot_be_less_than_start_time, :different_owner, :no_booking_same_day
+  validate :end_time_cannot_be_less_than_start_time, :different_owner, :no_booking_same_day, :no_booking_on_sold_listing
 
   STATUS = ["Accepted", "Rejected", "Pending"]
 
@@ -28,7 +28,7 @@ class Booking < ApplicationRecord
 
   def no_booking_on_sold_listing
     if listing.sold
-      errors.add(:user, "You cannot view this listing")
+      errors.add(:user, "You cannot book to view this listing")
     end
   end
 end
