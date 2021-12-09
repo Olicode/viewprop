@@ -7,7 +7,7 @@
   <% end %>
 
   <section class="searchform">
-    <%= render "search_form", listing: @listing %>
+    <%= render "search_form" %>
   </section>
 
   <%= link_to "New listing", new_listing_path %>
@@ -20,5 +20,3 @@
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
-
-

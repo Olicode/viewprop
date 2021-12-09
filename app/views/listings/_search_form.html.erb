@@ -1,0 +1,12 @@
+<div class="searchForm">
+  <%= simple_form_for :search, url: listings_path, method: :get do |f| %>
+    <%= f.input :address %>
+    <%= f.input :price %>
+    <%= f.input :instant_booking %>
+    <%= f.input :negotiable %>
+    <%= f.input :size %>
+    <%= f.input :bedroom %>
+    <%= f.input :bathroom %>
+    <%= f.submit "Search!", class: "btn btn-info" %>
+    <% end %>
+</div>

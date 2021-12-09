@@ -4,13 +4,38 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
+
     if params[:location].present?
-      @listings = @listings.search_by_address(params[:location])
+      @listings = @listings.search_by_address(params[:location].split[0])
     end
 
-    # if params[:bathrooms].present?
-    #   @listings = @listings.where(bathroom: params[:bathrooms])
-    # end
+    if params[:search] && params[:search][:address].present?
+      @listings = @listings.search_by_address(params[:search][:address])
+    end
+
+    if params[:search] && params[:search][:price].present?
+      @listings = @listings.where("price <= ?", params[:search][:price])
+    end
+
+    if params[:search] && params[:search][:instant_booking].present?
+      @listings = @listings.search_by_instant_booking(params[:search][:instant_booking])
+    end
+
+    if params[:search] && params[:search][:negotiable].present?
+      @listings = @listings.search_by_negotiable(params[:search][:negotiable])
+    end
+
+    if params[:search] && params[:search][:size].present?
+      @listings = @listings.where("size <= ?", params[:search][:size])
+    end
+
+    if params[:search] && params[:search][:bedroom].present?
+      @listings = @listings.where("bedroom <= ?", params[:search][:bedroom])
+    end
+
+    if params[:search] && params[:search][:bathroom].present?
+      @listings = @listings.where("bathroom <= ?", params[:search][:bathroom])
+    end
 
     @markers = @listings.geocoded.map do |listing|
       {
@@ -18,7 +43,6 @@ class ListingsController < ApplicationController
         lng: listing.longitude,
         info_window: render_to_string(partial: "info_window", locals: { listing: listing })
       }
-      raise
     end
   end
 
