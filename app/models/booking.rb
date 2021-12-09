@@ -5,7 +5,7 @@ class Booking < ApplicationRecord
   validates :date, :start_time, :end_time, presence: true
   validate :end_time_cannot_be_less_than_start_time, :different_owner
 
-  STATUS = ["Accepted, Rejected", "Pending"]
+  STATUS = ["Accepted", "Rejected", "Pending"]
 
   def end_time_cannot_be_less_than_start_time
     return unless start_time && end_time
