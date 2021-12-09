@@ -1,16 +1,16 @@
 <div class="container mt-4">
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="seller-tab" data-toggle="tab" href="#seller" role="tab" aria-controls="seller" aria-selected="true">Seller</a>
+      <a class="nav-link active" id="seller-tab" data-toggle="tab" href="#seller" role="tab" aria-controls="seller" aria-selected="true">Manage Your Listings</a>
     </li>
     <li class="nav-item" role="presentation">
-      <a class="nav-link" id="buyer-tab" data-toggle="tab" href="#buyer" role="tab" aria-controls="buyer" aria-selected="false">Buyer</a>
+      <a class="nav-link" id="buyer-tab" data-toggle="tab" href="#buyer" role="tab" aria-controls="buyer" aria-selected="false">Manage Your Purchases</a>
     </li>
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="seller" role="tabpanel" aria-labelledby="seller-tab">
       <% if current_user.seller == false %>
-        <p><%= link_to "Add your first listing!", link_to new_listing_path %>
+        <p><%= link_to "Add your first listing!", new_listing_path %>
       <% else %>
         <div class="row">
           <div class="col-lg-9">
@@ -22,8 +22,16 @@
                     <p>You have no offers yet.</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A natus eum sequi quod aspernatur molestiae nemo illum, facere quisquam perspiciatis impedit numquam cupiditate fuga exercitationem veritatis voluptates aliquid! Nihil, quae?</p>
                   <% else %>
-                    <% @seller_offers.each do %>
+                    <% @seller_offers.each do |offer| %>
                       <div class="offer-card">
+                        <p> Offer for <strong><%= offer.listing.title %></strong> at <strong><%= offer.final_price %></strong><p>
+                        <button><%= link_to "Counter Offer", edit_offer_path(offer) %></button>
+                        <%= link_to offer_path(offer, { offer: { seller_confirmed: true } }), method: :patch do %>
+                          <button>Accept Offer</button>
+                        <% end %>
+                        <%= link_to offer_path(offer, { offer: { seller_confirmed: false, buyer_confirmed: false } }), method: :patch do %>
+                          <button>Reject Offer</button>
+                        <% end %>
                       </div>
                     <% end %>
                   <% end %>
@@ -33,8 +41,16 @@
                   <% if @pending_seller_bookings.empty? %>
                     <p>You don't have any pending bookings</p>
                   <% else %>
-                    <% @pending_seller_bookings.each do %>
+                    <% @pending_seller_bookings.each do |booking|%>
                       <div class="booking-card">
+                        <p>Booking for <%= booking.listing.title %><p>
+                        <p><%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
+                        <%= link_to booking_path(booking, { booking: { status: "Accepted" } }), method: :patch do %>
+                          <i class="fas fa-check"></i>
+                        <% end %>
+                        <%= link_to booking_path(booking, { booking: { status: "Rejected" } }), method: :patch do %>
+                          <i class="fas fa-times"></i>
+                        <% end %>
                       </div>
                     <% end %>
                   <% end %>
@@ -54,14 +70,14 @@
               <div class="listing-viewing-container">
                 <div class="listing-viewing-title">
                   <h3>All your listings</h3>
-                  <h4><%= link_to "Houses sold", history_path %></h4>
+                  <%# <h4><%= link_to "Houses sold", history_path %></h4> %>
                   <h4><%= link_to "Add a new listing", new_listing_path %></h4>
                 </div>
                 <div class="listing-cards">
-                  <% @my_listings.each do %>
+                  <%# <% @my_listings.each do |listing| %> %>
                     <div class="listing-card">
                     </div>
-                  <% end %>
+                  <%# <% end %> %>
                 </div>
               </div>
             </div>

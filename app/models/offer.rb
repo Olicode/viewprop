@@ -4,7 +4,8 @@ class Offer < ApplicationRecord
 
   validates :final_price, presence: true
   validates :final_price, numericality: { greater_than_or_equal_to: 0 }
-  validate :cannot_make_offer_on_own_listing, :two_offers_on_listing, :no_offer_on_sold_listing
+  validate :cannot_make_offer_on_own_listing, :two_offers_on_listing, :no_offer_on_sold_listing, on: :create
+
 
   def cannot_make_offer_on_own_listing
     if user == listing.user
@@ -13,7 +14,7 @@ class Offer < ApplicationRecord
   end
 
   def two_offers_on_listing
-    if listing.offers.where.not(buyer_confirmation: false, seller_confirmation: false).pluck(:user_id).include?(user_id)
+    if listing.offers.where.not(buyer_confirmed: false, seller_confirmed: false).pluck(:user_id).include?(user_id)
       errors.add(:user, "You cannot place two offers on the same listing")
     end
   end
@@ -23,4 +24,5 @@ class Offer < ApplicationRecord
       errors.add(:user, "You cannot make an offer for this listing")
     end
   end
+
 end

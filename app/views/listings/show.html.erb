@@ -1,17 +1,17 @@
 <div class="container mt-3">
   <%= link_to "Back to all listings", listings_path %>
   <h1><%= @listing.title %></h1>
+  <% if current_user == @listing.user %>
+    <%= link_to "Edit", edit_listing_path(@listing) %>
+  <% end %>
   <% if !@listing.photos.attached? %>
     <div></div>
   <% else %>
-  <div class="listing-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @listing.photos.first.key, height: 300, crop: :fill %>')">
-  </div>
-  <% @listing.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-  <% end %>
-  <% end %>
-  <% if current_user == @listing.user %>
-    <%= link_to "Edit", edit_listing_path(@listing) %>
+    <div class="listing-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @listing.photos.first.key, height: 300, crop: :fill %>')">
+    </div>
+    <% @listing.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+    <% end %>
   <% end %>
   <h2><strong><i class="fas fa-pound-sign"></i> <%= @listing.price %></strong></h2>
   <p>Estimated DP: <%= (@listing.price * 0.1).to_f.round(6) %>
