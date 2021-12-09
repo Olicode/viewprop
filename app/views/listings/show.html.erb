@@ -1,6 +1,15 @@
 <div class="container mt-3">
   <%= link_to "Back to all listings", listings_path %>
   <h1><%= @listing.title %></h1>
+  <% if !@listing.photos.attached? %>
+    <div></div>
+  <% else %>
+  <div class="listing-photo" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @listing.photos.first.key, height: 300, crop: :fill %>')">
+  </div>
+  <% @listing.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
+  <% end %>
   <% if current_user == @listing.user %>
     <%= link_to "Edit", edit_listing_path(@listing) %>
   <% end %>

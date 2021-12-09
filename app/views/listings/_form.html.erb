@@ -16,6 +16,7 @@
     <%= f.input :description %>
     <%= f.input :bedroom %>
     <%= f.input :bathroom %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   </div>
   <div class="tab-pane fade" id="nav-security" role="tabpanel" aria-labelledby="nav-security-tab">
     <div class="row">
