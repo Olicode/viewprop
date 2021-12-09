@@ -33,6 +33,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
     @listing.user = current_user
     if @listing.save
+      current_user.seller = true
       redirect_to listings_path
     else
       render :new
