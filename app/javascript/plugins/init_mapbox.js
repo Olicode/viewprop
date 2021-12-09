@@ -28,12 +28,18 @@ const initMapbox = () => {
 
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
-    const popup = new mapboxgl.Popup().setHTML(marker.info_window);
+    if (marker.info_window) {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window);
 
-    new mapboxgl.Marker()
-      .setLngLat([marker.lng, marker.lat])
-      .setPopup(popup)
-      .addTo(map);
+      new mapboxgl.Marker()
+        .setLngLat([marker.lng, marker.lat])
+        .setPopup(popup)
+        .addTo(map);
+    } else {
+      new mapboxgl.Marker()
+        .setLngLat([marker.lng, marker.lat])
+        .addTo(map);
+    }
   });
 };
 
