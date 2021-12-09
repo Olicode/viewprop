@@ -19,7 +19,7 @@ class Offer < ApplicationRecord
   end
 
   def no_offer_on_sold_listing
-    if listing.sold == true
+    if listing.sold
       errors.add(:user, "You cannot make an offer")
     end
   end
