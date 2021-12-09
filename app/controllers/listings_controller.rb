@@ -5,6 +5,14 @@ class ListingsController < ApplicationController
   def index
     @listings = Listing.all
 
+    if params[:location].present?
+      @listings = @listings.search_by_address(params[:location])
+    end
+
+    # if params[:bathrooms].present?
+    #   @listings = @listings.where(bathroom: params[:bathrooms])
+    # end
+
     @markers = @listings.geocoded.map do |listing|
       {
         lat: listing.latitude,
