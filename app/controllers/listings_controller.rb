@@ -4,7 +4,6 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
-
     if params[:location].present?
       @listings = @listings.search_by_address(params[:location])
     end
@@ -19,6 +18,7 @@ class ListingsController < ApplicationController
         lng: listing.longitude,
         info_window: render_to_string(partial: "info_window", locals: { listing: listing })
       }
+      raise
     end
   end
 
