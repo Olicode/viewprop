@@ -23,6 +23,16 @@ class ListingsController < ApplicationController
   end
 
   def show
+    if params[:location].present?
+      @listings = @listings.search_by_address(params[:location])
+    end
+
+    @markers = [
+      {
+        lat: @listing.latitude,
+        lng: @listing.longitude
+      }
+    ]
   end
 
   def new
