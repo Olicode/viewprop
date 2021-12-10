@@ -46,10 +46,10 @@
                           <div class="booking-card">
                             <p>Booking for <%= booking.listing.title %><p>
                             <p><%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
-                            <%= link_to booking_path(booking, { booking: { status: "Accepted" } }), method: :patch do %>
+                            <%= link_to edit_booking_path(booking, { booking: { status: "Accepted" } }), method: :patch do %>
                               <i class="fas fa-check"></i>
                             <% end %>
-                            <%= link_to booking_path(booking, { booking: { status: "Rejected" } }), method: :patch do %>
+                            <%= link_to edit_booking_path(booking, { booking: { status: "Rejected" } }), method: :patch do %>
                               <i class="fas fa-times"></i>
                             <% end %>
                           </div>
