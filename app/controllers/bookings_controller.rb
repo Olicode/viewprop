@@ -21,6 +21,9 @@ class BookingsController < ApplicationController
     @booking.destroy!
   end
 
+  def update
+  end
+
   private
 
   def booking_params
