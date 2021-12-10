@@ -15,4 +15,7 @@ class PagesController < ApplicationController
     @accepted_seller_offers = @seller_offers.where(buyer_confirmed: true, seller_confirmed: true)
     @rejected_seller_offers = @seller_offers.where(buyer_confirmed: false, seller_confirmed: false)
   end
+
+  def history
+  end
 end
