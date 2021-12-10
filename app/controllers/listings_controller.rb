@@ -68,7 +68,7 @@ class ListingsController < ApplicationController
     @listing.user = current_user
     current_user.update(seller: true)
     if @listing.save
-      redirect_to listings_path
+      redirect_to listing_path(@listing)
     else
       render :new
     end

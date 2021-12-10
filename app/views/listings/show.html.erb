@@ -13,13 +13,13 @@
   <% if @listing.user == current_user %>
     <button type="button" class="btn btn-lg btn-light mb-4"> <%= link_to "Edit", edit_listing_path(@listing) %></button>
   <% else %>
-    <div class="booking-offer-buttons d-flex">
+    <div class="booking-offer-buttons d-flex mb-2">
       <% if @listing.sold %>
         <button type="button" class="btn btn-secondary btn-lg mr-4" disabled><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
-        <button type="button" class="btn btn-secondary btn-lg mb-4" disabled><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
+        <button type="button" class="btn btn-secondary btn-lg" disabled><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
       <% else %>
         <button type="button" class="btn btn-lg btn-light mr-4"><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
-        <button type="button" class="btn btn-lg btn-light mb-4"><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
+        <button type="button" class="btn btn-lg btn-light"><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
       <% end %>
     </div>
   <% end %>
