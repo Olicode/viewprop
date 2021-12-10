@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 2021_12_09_032247) do
 
   create_table "offers", force: :cascade do |t|
     t.integer "final_price"
-    t.boolean "buyer_confirmed", default: false
-    t.boolean "seller_confirmed", default: false
+    t.boolean "buyer_confirmed"
+    t.boolean "seller_confirmed"
     t.bigint "listing_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false

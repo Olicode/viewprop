@@ -13,7 +13,6 @@ gem 'puma', '~> 5.0'
 gem 'devise'
 gem 'sass-rails', '>= 6'
 gem 'geocoder'
-gem 'dotenv-rails', groups: [:development, :test]
 gem 'cloudinary', '~> 1.16.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
@@ -24,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'faker'
 gem 'database_cleaner-active_record'
 gem 'pg_search', '~> 2.3.0'
+gem "algoliasearch-rails"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

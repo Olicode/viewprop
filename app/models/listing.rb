@@ -16,4 +16,34 @@ class Listing < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+  pg_search_scope :search_by_price,
+                  against: :price,
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+  pg_search_scope :search_by_instant_booking,
+                  against: :instant_booking,
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+  pg_search_scope :search_by_negotiable,
+                  against: :negotiable,
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+  pg_search_scope :search_by_size,
+                  against: :size,
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+  pg_search_scope :search_by_bedroom,
+                  against: :bedroom,
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+  pg_search_scope :search_by_bathroom,
+                  against: :bathroom,
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end
