@@ -40,6 +40,10 @@
 	}
 }
 
+.nav-link.dark {
+	color: $light-grey;
+}
+
 .nav-item:hover {
 	text-decoration: underline;
 }
