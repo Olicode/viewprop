@@ -59,10 +59,11 @@
               <div class="booking-notification-container">
                 <h3>Booking History</h3>
                 <% if @current_seller_bookings.empty? %>
-                  <p>You have no history of bookings</p>
+                  <p>You have no bookings yet</p>
                 <% else %>
-                  <% @current_seller_bookings.each do %>
+                  <% @current_seller_bookings.each do |booking|%>
                     <div class="pending-booking-card">
+                      <p><%= booking.status %> | <%= booking.listing.title %> | <%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
                     </div>
                   <% end %>
                 <% end %>
@@ -70,14 +71,15 @@
               <div class="listing-viewing-container">
                 <div class="listing-viewing-title">
                   <h3>All your listings</h3>
-                  <%# <h4><%= link_to "Houses sold", history_path %></h4> %>
+                  <h4><%= link_to "Houses sold", history_path %></h4>
                   <h4><%= link_to "Add a new listing", new_listing_path %></h4>
                 </div>
                 <div class="listing-cards">
-                  <%# <% @my_listings.each do |listing| %> %>
+                  <% @my_listings.each do |listing| %>
                     <div class="listing-card">
+                      <h3><%= listing.title %></h3>
                     </div>
-                  <%# <% end %> %>
+                  <% end %>
                 </div>
               </div>
             </div>
