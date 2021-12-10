@@ -25,14 +25,23 @@ class OffersController < ApplicationController
   def update
     @offer = Offer.find(params[:id])
     @listing = @offer.listing
-    if @offer.listing.user == current_user
+
+    if params[:accept].present?
+      @offer.buyer_confirmed = true
+      @offer.seller_confirmed = true
+    elsif @offer.listing.user == current_user
       @offer.buyer_confirmed = false
       @offer.seller_confirmed = true
+      @offer.update(offer_params)
     elsif @offer.user == current_user
       @offer.buyer_confirmed = true
       @offer.seller_confirmed = false
+      @offer.update(offer_params)
     end
-    if @offer.save && @offer.update(offer_params)
+
+
+
+    if @offer.save
       redirect_to dashboard_path
     else
       render 'edit'
