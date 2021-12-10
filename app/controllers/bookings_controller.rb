@@ -22,11 +22,18 @@ class BookingsController < ApplicationController
   end
 
   def update
+    @booking = Booking.find(params[:id])
+    @booking.update(status_params)
+    redirect_to dashboard_path
   end
 
   private
 
   def booking_params
     params.require(:booking).permit(:date, :start_time, :end_time)
+  end
+
+  def status_params
+    params.require(:booking).permit(:status)
   end
 end
