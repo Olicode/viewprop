@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'faker'
 gem 'database_cleaner-active_record'
 gem 'pg_search', '~> 2.3.0'
+gem "algoliasearch-rails"
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
