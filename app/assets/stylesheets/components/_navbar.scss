@@ -1,26 +1,42 @@
 .navbar {
+	display: flex;
 	justify-content: space-between;
 	height: 65px;
 	background: $dark-grey;
-	h1 {
+	.navbar-brand {
+		font-size: 2rem;
+	}
+	a {
 		color: $light-grey;
-    font-family: 'Belleza';
-	}
-	.nav-link {
-		color: $light-grey !important;
-		margin-right: 20px;
 	}
 }
 
-.nav-section {
-	margin-right: 250px;
+.collapse.nav-lin {
+	justify-content: center;
 }
 
-.nav-section {
+.collapse.nav-lout {
+	justify-content: end;
+}
+
+.dropdown-menu {
+	border-radius: 8px;
+}
+
+.nav-section-1 {
 	display: flex;
 	list-style-type: none;
 	.nav-item {
-		margin: 0 36px;
+		width: 200px;
+		margin: auto 2%;
+	}
+}
+
+.nav-section-2 {
+	display: flex;
+	list-style-type: none;
+	a {
+		color: $dark-grey;
 	}
 }
 
@@ -28,8 +44,15 @@
 	text-decoration: underline;
 }
 
-.navbar-lewagon .navbar-collapse {
-	flex-grow: 0;
+@media screen and (max-width: 968px) {
+	.nav-section-1 {
+		display: flex;
+		list-style-type: none;
+		.nav-item {
+			max-width: 80px;
+			margin: auto 0.5%;
+		}
+	}
 }
 
 @media screen and (max-width: 568px) {
@@ -37,31 +60,37 @@
 		display: block;
 		margin-top: 3%;
 		z-index: 9;
-		.nav-item {
-			margin: 0;
-			.nav-link {
-				padding: 1%;
-				color: $dark-grey;
-			}
+	}
+
+	#navbarSupportedContent {
+		// border-radius: 8px;
+		width: 370px;
+		background-color: rgba(255, 255, 255, 0.6);
+		margin-top: 4px;
+		margin-bottom: 0;
+		padding-bottom: 0;
+		a {
+			padding: 0px;
+			width: 120px;
+			color: $dark-grey;
+		}
+		.nav-section-1 {
+			justify-content: space-evenly;
+			margin: 16px 48px;
+		}
+		.nav-section-2 {
+			justify-content: space-evenly;
+			margin: 16px 48px;
 		}
 	}
-	#navbarSupportedContent {
-		border-radius: 8px;
-		width: 250px;
-		background-color: rgba(255, 255, 255, 0.6);
-		margin-top: 16px;
-		margin-left: 16px;
-		padding: 8px;
-		text-align: center;
+	#navbarSupportedContent.navbar-collapse {
+		margin-top: 0;
+		padding-top: 0;
 	}
 
 	#location-input-homepage {
-		max-width: 320px;
+		max-width: 340px;
 		font-size: 0.8em;
-	}
-
-	.container {
-		padding: 40px;
 	}
 
 	.main-text {
