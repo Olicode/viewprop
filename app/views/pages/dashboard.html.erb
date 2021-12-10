@@ -22,15 +22,15 @@
                     <p>You have no offers yet.</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A natus eum sequi quod aspernatur molestiae nemo illum, facere quisquam perspiciatis impedit numquam cupiditate fuga exercitationem veritatis voluptates aliquid! Nihil, quae?</p>
                   <% else %>
-                    <% @seller_offers.each do |offer| %>
+                    <% @pending_seller_offers.each do |offer| %>
                       <div class="offer-card">
-                        <p> Offer for <strong><%= offer.listing.title %></strong> at <strong><%= offer.final_price %></strong><p>
-                        <button><%= link_to "Counter Offer", edit_offer_path(offer) %></button>
+                        <p> Offer for <strong><%= offer.listing.title %></strong> at <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                        <button type="button" class="btn btn-light"><%= link_to "Counter Offer", edit_offer_path(offer) %></button>
                         <%= link_to offer_path(offer, { offer: { seller_confirmed: true } }), method: :patch do %>
-                          <button>Accept Offer</button>
+                          <button type="button" class="btn btn-success">Accept Offer</button>
                         <% end %>
                         <%= link_to offer_path(offer, { offer: { seller_confirmed: false, buyer_confirmed: false } }), method: :patch do %>
-                          <button>Reject Offer</button>
+                          <button type="button" class="btn btn-danger">Reject Offer</button>
                         <% end %>
                       </div>
                     <% end %>
@@ -89,15 +89,15 @@
               <div class="notification-container">
                 <div class="notification-cards">
                   <h3>Notifications</h3>
-                  <%# <% if @notifications.empty? %> %>
+                  <%# <% if @notifications.empty? %>
                     <p>You have no notifications</p>
                     <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptatibus! Fuga, commodi voluptate minus itaque suscipit temporibus pariatur, natus, earum animi neque quas magnam inventore perferendis similique alias asperiores veritatis.</p>
-                  <%# <% else %> %>
+                  <%# <% else %>
                     <div class="notification-card">
-                      <%# <% @notifications.each do %> %>
-                      <%# <% end %> %>
+                      <%# <% @notifications.each do %>
+                      <%# <% end %>
                     </div>
-                  <%# <% end %> %>
+                  <%# <% end %>
                 </div>
               </div>
             </div>
