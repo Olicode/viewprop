@@ -22,7 +22,7 @@ class Booking < ApplicationRecord
 
   def no_booking_same_day
     if !listing.bookings.where(user: self.user, date: self.date).empty?
-      errors.add(:user, "You cannot book two viewings on the same day")
+      errors.add(:date, "You cannot book two viewings on the same day")
     end
   end
 
