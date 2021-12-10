@@ -47,7 +47,7 @@
   <% end %>
 
   <%# size %>
-  <% if @listing.size.nil? %>
+  <% if @listing.size.zero? %>
     <p>No information on size available</p>
   <% else %>
     <p> <%= @listing.size %> sqm </p>
@@ -56,13 +56,13 @@
   <%# bedroom / bathroom %>
   <div class="bedroom-bathroom d-flex">
     <i class="fas fa-bed"></i>
-      <% if @listing.bedroom.nil? %>
+      <% if @listing.bedroom.zero? %>
         <p class="mr-3"> N/A</p>
       <% else %>
         <p class="mr-3"><%= @listing.bedroom %> Bedroom(s)</p>
       <% end %>
     <i class="fas fa-shower"></i>
-      <% if @listing.bathroom.nil? %>
+      <% if @listing.bathroom.zero? %>
         <p> N/A</p>
       <% else %>
         <p><%= @listing.bathroom %> Bathroom(s)</p>
