@@ -66,8 +66,8 @@ class ListingsController < ApplicationController
   def create
     @listing = Listing.new(listing_params)
     @listing.user = current_user
+    current_user.update(seller: true)
     if @listing.save
-      current_user.seller = true
       redirect_to listings_path
     else
       render :new
