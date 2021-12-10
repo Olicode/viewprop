@@ -120,7 +120,7 @@ Offer.create!({
                 final_price: 384_000,
                 buyer_confirmed: true,
                 seller_confirmed: true,
-                Listing[3],
+                listing: Listing[3],
                 user: User[2]
               })
 Offer.create!({
