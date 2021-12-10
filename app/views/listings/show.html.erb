@@ -1,9 +1,8 @@
 <div class="container mt-3">
   <%= link_to "Back to all listings", listings_path %>
   <h1><%= @listing.title %></h1>
-  <% if current_user == @listing.user %>
-    <%= link_to "Edit", edit_listing_path(@listing) %>
-  <% end %>
+
+
   <% if !@listing.photos.attached? %>
     <div></div>
   <% else %>
@@ -43,15 +42,19 @@
         <p><%= @listing.bathroom %> Bathroom(s)</p>
       <% end %>
   </div>
-  <div class="booking-offer-buttons d-flex">
-    <% if @listing.sold %>
-      <button type="button" class="btn btn-secondary btn-lg mr-4" disabled><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
-      <button type="button" class="btn btn-secondary btn-lg" disabled><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
-    <% else %>
-      <button type="button" class="btn btn-lg btn-light mr-4"><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
-      <button type="button" class="btn btn-lg btn-light"><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
-    <% end %>
-  </div>
+  <% if @listing.user == current_user %>
+    <button type="button" class="btn btn-lg btn-light"> <%= link_to "Edit", edit_listing_path(@listing) %></button>
+  <% else %>
+    <div class="booking-offer-buttons d-flex">
+      <% if @listing.sold %>
+        <button type="button" class="btn btn-secondary btn-lg mr-4" disabled><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
+        <button type="button" class="btn btn-secondary btn-lg" disabled><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
+      <% else %>
+        <button type="button" class="btn btn-lg btn-light mr-4"><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
+        <button type="button" class="btn btn-lg btn-light"><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
+      <% end %>
+    </div>
+  <% end %>
   <br>
 
   <p><%= @listing.description %> Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, quod officiis quia maiores architecto sapiente, nostrum pariatur commodi minima, voluptate amet enim sunt similique incidunt velit exercitationem? Dolore, et doloribus.</p>
