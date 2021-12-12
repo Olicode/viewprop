@@ -22,6 +22,13 @@
                       <h3>My offers</h3>
                       <% if @pending_seller_offers.empty? %>
                         <p>You have no pending offers.</p>
+                      <% elsif %>
+                        <% @waiting_seller_offers.each do |offer| %>
+                          <div class="offer-card bg-light p-2">
+                            <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                            <p> Waiting for response </p>
+                          </div>
+                        <% end %>
                       <% else %>
                         <% @pending_seller_offers.each do |offer| %>
                           <div class="offer-card bg-light p-2">
@@ -124,7 +131,121 @@
       <% end %>
     </div>
     <div class="tab-pane fade" id="buyer" role="tabpanel" aria-labelledby="buyer-tab">
-      <p>To-do</p>
+      <div class="row">
+          <div class="col-lg-9">
+            <div class="left-dashboard-container">
+              <div class="row">
+                <div class="col-lg-4">
+                  <div class="offer-booking-container">
+                    <div class="offer-container">
+                      <h3>Offers your made</h3>
+                      <p><%= link_to "See your offer history", history_path %>
+                      <% if @pending_buyer_offers.empty? %>
+                        <p>You have not made any offers.</p>
+                      <% elsif %>
+                        <% @waiting_buyer_offers.each do |offer| %>
+                          <div class="offer-card bg-light p-2">
+                            <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                            <p> Waiting for response </p>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <% @pending_buyer_offers.each do |offer| %>
+                          <div class="offer-card bg-light p-2">
+                            <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                            <button type="button" class="btn btn-warning"><%= link_to "Counter Offer", edit_offer_path(offer) %></button>
+                            <%= link_to offer_path(offer, accept: true), method: :patch do %>
+                              <button type="button" class="btn btn-success">Accept Offer</button>
+                            <% end %>
+                            <%= link_to offer_path(offer, { offer: { seller_confirmed: false, buyer_confirmed: false } }), method: :patch do %>
+                              <button type="button" class="btn btn-danger">Reject Offer</button>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="booking-container">
+                      <h3>My bookings</h3>
+                      <% if @pending_buyer_bookings.empty? %>
+                        <p>You don't have any pending bookings.</p>
+                      <% else %>
+                        <% @pending_buyer_bookings.each do |booking|%>
+                          <div class="booking-card">
+                            <p>Booking for <%= booking.listing.title %><p>
+                            <p><%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
+                            <%= link_to booking_path(booking, { booking: { status: "Accepted" } }), method: :patch do %>
+                              <i class="fas fa-check"></i>
+                            <% end %>
+                            <%= link_to booking_path(booking, { booking: { status: "Rejected" } }), method: :patch do %>
+                              <i class="fas fa-times"></i>
+                            <% end %>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-8">
+                  <div class="booking-notification-container">
+                    <h3>Current Offers & Bookings</h3>
+                    <% if @accepted_buyer_offers.empty? && @rejected_buyer_offers.empty? && @current_buyer_bookings.empty? %>
+                      <p>You have no offers or bookings yet</p>
+                    <% else %>
+                      <% @accepted_buyer_offers.each do |offer| %>
+                        <div class="offer-card bg-light p-2">
+                          <p>ACCEPTED</p>
+                          <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                        </div>
+                      <% end %>
+                      <% @rejected_buyer_offers.each do |offer| %>
+                        <div class="offer-card bg-light p-2">
+                          <p>REJECTED</p>
+                          <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                        </div>
+                      <% end %>
+                      <% @current_buyer_bookings.each do |booking|%>
+                        <div class="pending-booking-card">
+                          <p><%= booking.status %> | <%= booking.listing.title %> | <%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="listing-viewing-container">
+                <div class="listing-viewing-title d-flex align-items-center">
+                  <h3 class="mr-4">Listings you've searched for</h3>
+                </div>
+                <div class="listing-cards">
+                  <%# <% @my_listings.each do |listing| %> %>
+                    <div class="listing-card">
+                      <%# <h5><%= link_to listing.title, listing_path(listing) %></h5> %>
+                    </div>
+                  <%# <% end %> %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="right-dashboard-container">
+              <div class="notification-container">
+                <div class="notification-cards">
+                  <h3>Notifications</h3>
+                  <%# <% if @notifications.empty? %>
+                    <p>You have no notifications</p>
+                    <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptatibus! Fuga, commodi voluptate minus itaque suscipit temporibus pariatur, natus, earum animi neque quas magnam inventore perferendis similique alias asperiores veritatis.</p>
+                  <%# <% else %>
+                    <div class="notification-card">
+                      <%# <% @notifications.each do %>
+                      <%# <% end %>
+                    </div>
+                  <%# <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 
