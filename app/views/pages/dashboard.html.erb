@@ -21,16 +21,15 @@
                     <div class="offer-container">
                       <h3>My offers</h3>
                       <p><%= link_to "See your offer history", history_path %></p>
-                      <% if @pending_seller_offers.empty? %>
+                      <% if @pending_seller_offers.empty? && @waiting_seller_offers.empty? %>
                         <p>You have no pending offers.</p>
-                      <% elsif %>
+                      <% else %>
                         <% @waiting_seller_offers.each do |offer| %>
                           <div class="offer-card bg-light p-2">
                             <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                             <p> Waiting for response </p>
                           </div>
                         <% end %>
-                      <% else %>
                         <% @pending_seller_offers.each do |offer| %>
                           <div class="offer-card bg-light p-2">
                             <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
@@ -115,15 +114,15 @@
               <div class="notification-container">
                 <div class="notification-cards">
                   <h3>Notifications</h3>
-                  <%# <% if @notifications.empty? %>
+                  <% if @seller_notifications.empty? %>
                     <p>You have no notifications</p>
-                    <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptatibus! Fuga, commodi voluptate minus itaque suscipit temporibus pariatur, natus, earum animi neque quas magnam inventore perferendis similique alias asperiores veritatis.</p>
-                  <%# <% else %>
+                  <% else %>
                     <div class="notification-card">
-                      <%# <% @notifications.each do %>
-                      <%# <% end %>
+                      <% @seller_notifications.each do |notification| %>
+                        <p><%= notification.content %></p>
+                      <% end %>
                     </div>
-                  <%# <% end %>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -141,16 +140,15 @@
                     <div class="offer-container">
                       <h3>Offers your made</h3>
                       <p><%= link_to "See your offer history", history_path %></p>
-                      <% if @pending_buyer_offers.empty? %>
+                      <% if @pending_buyer_offers.empty? && @waiting_buyer_offers.empty? %>
                         <p>You have not made any offers.</p>
-                      <% elsif %>
+                      <% else %>
                         <% @waiting_buyer_offers.each do |offer| %>
                           <div class="offer-card bg-light p-2">
                             <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                             <p> Waiting for response </p>
                           </div>
                         <% end %>
-                      <% else %>
                         <% @pending_buyer_offers.each do |offer| %>
                           <div class="offer-card bg-light p-2">
                             <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
@@ -172,14 +170,8 @@
                       <% else %>
                         <% @pending_buyer_bookings.each do |booking|%>
                           <div class="booking-card">
-                            <p>Booking for <%= booking.listing.title %><p>
+                            <p> <%= booking.status.upcase %> | Booking for <%= booking.listing.title %><p>
                             <p><%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
-                            <%= link_to booking_path(booking, { booking: { status: "Accepted" } }), method: :patch do %>
-                              <i class="fas fa-check"></i>
-                            <% end %>
-                            <%= link_to booking_path(booking, { booking: { status: "Rejected" } }), method: :patch do %>
-                              <i class="fas fa-times"></i>
-                            <% end %>
                           </div>
                         <% end %>
                       <% end %>
@@ -237,15 +229,15 @@
               <div class="notification-container">
                 <div class="notification-cards">
                   <h3>Notifications</h3>
-                  <%# <% if @notifications.empty? %>
+                  <% if @buyer_notifications.empty? %>
                     <p>You have no notifications</p>
-                    <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptatibus! Fuga, commodi voluptate minus itaque suscipit temporibus pariatur, natus, earum animi neque quas magnam inventore perferendis similique alias asperiores veritatis.</p>
-                  <%# <% else %>
+                  <% else %>
                     <div class="notification-card">
-                      <%# <% @notifications.each do %>
-                      <%# <% end %>
+                      <% @buyer_notifications.each do |notification| %>
+                        <p><%= notification.content %></p>
+                      <% end %>
                     </div>
-                  <%# <% end %>
+                  <% end %>
                 </div>
               </div>
             </div>
