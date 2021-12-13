@@ -10,6 +10,7 @@ class BookingsController < ApplicationController
     @booking.listing = @listing
     @booking.user = current_user
     if @booking.save
+      Notification.create(user: @listing.user, booking: @booking, content: "You have a new booking for #{@listing.title}", seller: true)
       redirect_to dashboard_path
     else
       render 'new'

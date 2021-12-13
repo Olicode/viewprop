@@ -11,6 +11,7 @@ class OffersController < ApplicationController
     @offer.user = current_user
     @offer.buyer_confirmed = true
     if @offer.save
+      Notification.create(user: @listing.user, offer: @offer, content: "You have a new offer for #{listing.title}", seller: true)
       redirect_to dashboard_path
     else
       render 'new'

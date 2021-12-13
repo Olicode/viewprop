@@ -115,15 +115,15 @@
               <div class="notification-container">
                 <div class="notification-cards">
                   <h3>Notifications</h3>
-                  <%# <% if @notifications.empty? %>
+                  <% if @seller_notifications.empty? %>
                     <p>You have no notifications</p>
-                    <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima, voluptatibus! Fuga, commodi voluptate minus itaque suscipit temporibus pariatur, natus, earum animi neque quas magnam inventore perferendis similique alias asperiores veritatis.</p>
-                  <%# <% else %>
+                  <% else %>
                     <div class="notification-card">
-                      <%# <% @notifications.each do %>
-                      <%# <% end %>
+                      <% @seller_notifications.each do |notification| %>
+                        <p><%= notification.content %></p>
+                      <% end %>
                     </div>
-                  <%# <% end %>
+                  <% end %>
                 </div>
               </div>
             </div>

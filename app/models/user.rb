@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :offers
   has_many :bookings, through: :listings
   has_one_attached :avatar
+  has_many :notifications
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

@@ -25,7 +25,10 @@ class PagesController < ApplicationController
     @accepted_buyer_offers = @offers_buyer.where(buyer_confirmed: true, seller_confirmed: true)
     @rejected_buyer_offers = @offers_buyer.where(buyer_confirmed: false, seller_confirmed: false)
     @listings_searched = session[:listing_id].map { |id| Listing.find(id) }
-    # raise
+    # seller notifications
+    @seller_notifications = current_user.notifications.where(seller: true)
+    # buyer notifications
+    @buyer_notifications = current_user.notifications.where(seller: false)
   end
 
   def history
