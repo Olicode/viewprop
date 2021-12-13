@@ -57,6 +57,13 @@ class ListingsController < ApplicationController
         lng: @listing.longitude
       }
     ]
+
+    if session[:listing_id].present?
+      session[:listing_id] << @listing.id
+    else
+      session[:listing_id] = [@listing.id]
+    end
+    # raise
   end
 
   def new
