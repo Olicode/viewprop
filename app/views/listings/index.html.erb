@@ -1,6 +1,9 @@
 <div class="container mt-3">
 
-  <h1>All listings</h1>
+  <section class="mb-3">
+    <%= render "search_form" %>
+  </section>
+
   <div class="main-container d-flex">
     <div class="row">
       <% @listings.each do |listing| %>
@@ -58,10 +61,6 @@
 
     </div>
   </div>
-
-  <section>
-    <%= render "search_form" %>
-  </section>
 
     <%= link_to "New listing", new_listing_path %>
     <hr>
