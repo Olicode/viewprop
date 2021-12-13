@@ -24,11 +24,16 @@ class PagesController < ApplicationController
     @pending_buyer_offers = @offers_buyer.where(buyer_confirmed: false, seller_confirmed: true)
     @accepted_buyer_offers = @offers_buyer.where(buyer_confirmed: true, seller_confirmed: true)
     @rejected_buyer_offers = @offers_buyer.where(buyer_confirmed: false, seller_confirmed: false)
+    @listings_searched = session[:listing_id]
   end
 
   def history
-    @seller_offers = Offer.joins(:listing).where(listing: { user: current_user })
+    # listings sold - offers
+    @seller_offers = Offer.joins(:listing).where(listing: { user: current_user }).where("date < ?", Date.today)
     @accepted_seller_offers = @seller_offers.where(buyer_confirmed: true, seller_confirmed: true)
     @rejected_seller_offers = @seller_offers.where(buyer_confirmed: false, seller_confirmed: false)
+    # listings bought - offers
+    @buyer_offers = current_user.offers
+    @accepted_buyer_offers = @buyer_offers.joins(:listing).where(listings: {sold: true})
   end
 end
