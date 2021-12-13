@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <ul class="nav nav-pills" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <a class="nav-link active" id="seller-tab" data-toggle="tab" href="#seller" role="tab" aria-controls="seller" aria-selected="true">Manage Your Listings</a>
     </li>
@@ -7,7 +7,7 @@
       <a class="nav-link" id="buyer-tab" data-toggle="tab" href="#buyer" role="tab" aria-controls="buyer" aria-selected="false">Manage Your Purchases</a>
     </li>
   </ul>
-  <div class="tab-content" id="myTabContent">
+  <div class="tab-content mt-5" id="myTabContent">
     <div class="tab-pane fade show active" id="seller" role="tabpanel" aria-labelledby="seller-tab">
       <% if current_user.seller == false %>
         <p><%= link_to "Add your first listing!", new_listing_path %>
@@ -17,8 +17,8 @@
             <div class="left-dashboard-container">
               <div class="row">
                 <div class="col-lg-4">
-                  <div class="offer-booking-container">
-                    <div class="offer-container">
+                  <div class="offer-booking-container card " >
+                    <div class="offer-container m-3">
                       <h3>My offers</h3>
                       <p><%= link_to "See your offer history", history_path %></p>
                       <% if @pending_seller_offers.empty? && @waiting_seller_offers.empty? %>
@@ -44,7 +44,7 @@
                         <% end %>
                       <% end %>
                     </div>
-                    <div class="booking-container">
+                    <div class="booking-container m-3">
                       <h3>My bookings</h3>
                       <% if @pending_seller_bookings.empty? %>
                         <p>You don't have any pending bookings.</p>
@@ -66,9 +66,9 @@
                   </div>
                 </div>
 
-                <div class="col-lg-8">
+                <div class="col-lg-8 card">
                   <div class="booking-notification-container">
-                    <h3>Current Offers & Bookings</h3>
+                    <h3 class="mt-3">Current Offers & Bookings</h3>
                     <% if @accepted_seller_offers.empty? && @rejected_seller_offers.empty? && @current_seller_bookings.empty? %>
                       <p>You have no offers or bookings yet</p>
                     <% else %>
@@ -93,13 +93,13 @@
                   </div>
                 </div>
               </div>
-              <div class="listing-viewing-container">
-                <div class="listing-viewing-title d-flex align-items-center">
+              <div class="listing-viewing-container card mt-3">
+                <div class="listing-viewing-title d-flex align-items-center m-3">
                   <h3 class="mr-4">All your listings</h3>
                   <p class="mr-3 mb-0"><%= link_to "Listings sold", history_path %></p>
                   <p class="mb-0"><%= link_to "Add a new listing", new_listing_path %></p>
                 </div>
-                <div class="listing-cards">
+                <div class="listing-cards m-3">
                   <% @my_listings.each do |listing| %>
                     <div class="listing-card">
                       <h5><%= link_to listing.title, listing_path(listing) %></h5>
@@ -110,8 +110,8 @@
             </div>
           </div>
           <div class="col-lg-3">
-            <div class="right-dashboard-container">
-              <div class="notification-container">
+            <div class="right-dashboard-container card ">
+              <div class="notification-container m-3">
                 <div class="notification-cards">
                   <h3>Notifications</h3>
                   <% if @seller_notifications.empty? %>

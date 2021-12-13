@@ -81,7 +81,12 @@ class ListingsController < ApplicationController
     else
       session[:listing_id] = [@listing.id]
     end
-    # raise
+
+    @conversation = current_user.conversation_with(@listing.user)
+    if !@conversation
+      @conversation = Conversation.new(sender_id: current_user.id, receiver_id: @listing.user.id)
+      @conversation.save!
+    end
   end
 
   def new
