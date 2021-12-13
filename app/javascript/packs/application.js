@@ -26,9 +26,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 // import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete } from '../plugins/init_autocomplete';
+import { initConversationCable } from '../channels/conversation_channel';
 // Call your functions here, e.g:
   // initSelect2();
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initAutocomplete();
+  initConversationCable();
 })

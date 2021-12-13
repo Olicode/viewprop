@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def conversations
     Conversation.where(sender_id: id).or(Conversation.where(receiver_id: id))
   end
+
+  def conversation_with(user)
+    Conversation.where(sender_id: user.id, receiver_id: id).or(Conversation.where(sender_id: id, receiver_id: user.id)).first
+  end
 end

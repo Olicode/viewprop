@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   end
   resources :offers, only: %i[edit update]
   resources :bookings, only: %i[update delete]
+
+  resources :conversations, only: %i[index show] do
+    resources :messages, only: :create
+  end
 end
