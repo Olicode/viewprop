@@ -1,16 +1,48 @@
 <%= simple_form_for listing do |f| %>
 
+<nav class="bg-white">
+  <div class="nav nav-pills" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-property-tab" data-toggle="tab" href="#nav-property" role="tab" aria-controls="nav-property" aria-selected="true">Property Details</a>
+    <a class="nav-item nav-link" id="nav-security-tab" data-toggle="tab" href="#nav-security" role="tab" aria-controls="nav-security" aria-selected="false">Security Package</a>
+    <a class="nav-item nav-link" id="nav-payment-tab" data-toggle="tab" href="#nav-payment" role="tab" aria-controls="nav-payment" aria-selected="false">Confirmation & Payment</a>
+  </div>
+</nav>
+
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-property" role="tabpanel" aria-labelledby="nav-property-tab">
-    <%= f.input :title %>
-    <%= f.input :address %>
-    <%= f.input :price %>
-    <%= f.input :negotiable %>
-    <%= f.input :description %>
-    <%= f.input :size %>
-    <%= f.input :bedroom %>
-    <%= f.input :bathroom %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+
+  <div class="new_listing_form">
+    <div class="container">
+      <div class="mr-3"><%= f.input :title %></div>
+      <div class="mr-3"><%= f.input :description %></div>
+      <div class="mr-3"><%= f.input :address %></div>
+      <div class="d-flex">
+        <div class="mr-3"><%= f.input :size, label: "Size (㎡)" %></div>
+        <div class="mr-3"><%= f.input :bedroom, collection: 1..6, label: "Bedrooms" %></div>
+        <div class="mr-3"><%= f.input :bathroom, collection: 1..6, label: "Bathrooms" %></div>
+        <div><%= f.input :price, collection: ["< 70.000", "70.000 - 150.000", "150.000 - 250.000", "250.000 - 450.000", "450.000 +"], label: "Price (usd)" %></div>
+        <div class="ml-5 mt-3">
+          <div><%= f.input :instant_booking, as: :boolean, boolean_style: :inline %></div>
+          <div><%= f.input :negotiable, as: :boolean, boolean_style: :inline %></div>
+        </div>
+      </div>
+      <div class="mb-4"><%= f.input :photos, label: "Photos:", as: :file, input_html: { multiple: true } %></div>
+<%#
+      <div class="mt-4 dark">
+        <nav aria-label="...">
+          <ul class="pagination pagination-sm">
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">1</span>
+            </li>
+            <li class="page-item"><a class="nav-item nav-link" id="nav-security-tab" data-toggle="tab" href="#nav-security" role="tab" aria-controls="nav-securityy" aria-selected="false">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+          </ul>
+        </nav>
+      </div> %>
+
+    </div>
+  </div>
+
   </div>
   <div class="tab-pane fade" id="nav-security" role="tabpanel" aria-labelledby="nav-security-tab">
     <div class="row">
@@ -18,7 +50,7 @@
         <div class="left-security bg-white p-3" style="height:500px;">
           <h2 class="text-center">Basic Package</h2>
           <p class="text-justify p-1">The basic package includes the ability for you to have instant-viewings with your own security system. Viewprop verifies the visitors coming into your property but will not be liable for any damages done.</p>
-          <ul>
+          <ul class="p-4">
             <li>Arrange your own viewings</li>
           </ul>
         </div>
@@ -26,8 +58,8 @@
       <div class="col-lg-8">
         <div class="right-security bg-white p-3" style="height:500px;">
           <h2 class="text-center">Security Package</h2>
-          <p class="text-justify p-1">Allow viewprop to guarantee your homes safety during viewings by using the security package we provide. Get a kit consisting of a security camera that you can access through the application and a padlock that will allow visitors to enter the property with a secret key we auto-generate for you in every bookings</p>
-          <ul>
+          <p class="text-justify">Allow viewprop to guarantee your homes safety during viewings by using the security package we provide. Get a kit consisting of a security camera that you can access through the application and a padlock that will allow visitors to enter the property with a secret key we auto-generate for you in every bookings</p>
+          <ul class="p-4">
             <li>Get a FREE* Security Kit to make sure your viewings are safe.</li>
             <li>Get all-access to instant-bookings and be able to host viewings anywhere in the world!</li>
             <li>Get an auto-generated secret key for every visitor</li>
@@ -42,12 +74,5 @@
   <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
     <%= f.submit "Submit Listing", class: "btn btn-info" %>
   </div>
-<nav>
-  <div class="nav nav-pills" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-property-tab" data-toggle="tab" href="#nav-property" role="tab" aria-controls="nav-property" aria-selected="true">Property Details</a>
-    <a class="nav-item nav-link" id="nav-security-tab" data-toggle="tab" href="#nav-security" role="tab" aria-controls="nav-securityy" aria-selected="false">Security Package</a>
-    <a class="nav-item nav-link" id="nav-payment-tab" data-toggle="tab" href="#nav-payment" role="tab" aria-controls="nav-payment" aria-selected="false">Confirmation & Payment</a>
-  </div>
-</nav>
 </div>
 <% end %>

@@ -1,0 +1,20 @@
+.new_listing_form {
+	margin-top: 10px;
+}
+
+a.page-link {
+	color: $dark;
+	background-color: $light-grey;
+	border: 1px solid $grey;
+}
+
+a.page-link:hover {
+	background-color: $dark-grey !important;
+	color: $light-grey;
+}
+
+span.page-link {
+	background-color: $dark-grey !important;
+	color: $light-grey;
+	border: 1px solid $grey;
+}
