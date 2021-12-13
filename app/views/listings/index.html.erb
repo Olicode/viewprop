@@ -1,10 +1,53 @@
 <div class="container mt-3">
 
-  <h1>listings page</h1>
+<h1>listings page</h1>
+<div class="main-container d-flex">
+  <div class="row">
+    <% @listings.each do |listing| %>
+    <div class="col-md-4">
+      <%= link_to listing_path(listing), class: "card-link-wrapper" do %>
 
-  <% @listings.each do |listing| %>
-    <p><%= listing.title %> <%= link_to 'View this Listing', listing_path(listing) %></p>
-  <% end %>
+      <div class="card mb-3 mr-2" style="width: 16rem; height: 320px">
+          <% if listing.photos.attached?%>
+            <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path listing.photos.first.key, crop: :fill %>')">
+              <% if listing.instant_booking %>
+              <p class="badge-instant-viewing">INSTANT VIEWING</p>
+            <% else %>
+            <p class="badge-instant-viewing">VIEWING UPON REQUEST</p>
+            <% end %>
+            </div>
+          <% else %>
+            <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg')">
+            <% if listing.instant_booking %>
+              <p class="badge-instant-viewing">INSTANT VIEWING</p>
+            <% else %>
+            <p class="badge-viewing-upon-request">VIEWING UPON REQUEST</p>
+            <% end %>
+            </div>
+          <% end %>
+
+        <div class="card-body">
+            <h5><%= listing.title.truncate(32) %></h5>
+            <p class="card-text"> <%= listing.description %></p>
+            <p><strong>EUR <%= listing.price %></strong></p>
+
+
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+ </div>
+
+  <div id="map"
+     style="width: 85%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+
+  </div>
+  </div>
+
+
 
   <section class="searchform">
     <%= render "search_form" %>
@@ -14,10 +57,4 @@
   <hr>
   <%= link_to 'Back', root_path %>
 
-  <div id="map"
-     style="width: 100%; height: 600px;"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-
-  </div>
 </div>

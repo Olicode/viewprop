@@ -27,7 +27,7 @@ puts "Creating listings..."
 Listing.create!({
                   title: "Canggu prime location, huge opportunity!",
                   address: "Canggu, Bali",
-                  description: "3 BR luxury villa",
+                  description: "4 bedroom luxury villa",
                   price: 399.000,
                   negotiable: true,
                   instant_booking: true,
@@ -40,7 +40,7 @@ Listing.create!({
 Listing.create!({
                   title: "Ubud quiet location, huge opportunity!",
                   address: "Ubud, Bali",
-                  description: "3 BR luxury villa",
+                  description: "3 bedroom luxury villa",
                   price: 299.000,
                   negotiable: false,
                   instant_booking: true,
@@ -53,7 +53,7 @@ Listing.create!({
 Listing.create!({
                   title: "Canggu quiet location, development opportunity!",
                   address: "Canggu, Bali",
-                  description: "4 BR villa",
+                  description: "4 bedroom villa",
                   price: 180.000,
                   negotiable: false,
                   instant_booking: true,
@@ -66,7 +66,7 @@ Listing.create!({
 Listing.create!({
                   title: "Uluwatu quiet location, ocean view petite apt!",
                   address: "Uluwatu, Bali",
-                  description: "1 BR luxury apt",
+                  description: "1 bedroom luxury apt",
                   price: 280.000,
                   negotiable: false,
                   instant_booking: false,
@@ -79,7 +79,7 @@ Listing.create!({
 Listing.create!({
                   title: "Ubud prime location, huge opportunity!",
                   address: "Ubud, Bali",
-                  description: "2 BR villa",
+                  description: "2 bedroom villa",
                   price: 269.000,
                   negotiable: true,
                   instant_booking: true,
