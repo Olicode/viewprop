@@ -19,11 +19,15 @@ class BookingsController < ApplicationController
 
   def delete
     @booking = Booking.find(params[:id])
+    Notification.create(user: current_user, booking: @booking, content: "You cancelled a viewing for #{@booking.listing.title}", seller: false)
+    Notification.create(user: @booking.listing.user, booking: @booking, content: "#{@booking.user.first_name} has just cancelled a viewing for #{@booking.listing.title}", seller: true)
     @booking.destroy!
   end
 
   def update
     @booking = Booking.find(params[:id])
+    Notification.create(user: current_user, booking: @booking, content: "You have updated the booking for #{@booking.listing.title}", seller: false)
+    Notification.create(user: @booking.listing.user, booking: @booking, content: "#{@booking.listing.title} booking has been updated", seller: true)
     @booking.update(status_params)
     redirect_to dashboard_path
   end
