@@ -61,8 +61,9 @@ class ListingsController < ApplicationController
     if session[:listing_id].present?
       session[:listing_id] << @listing.id
     else
-      session[:listing_id] = []
+      session[:listing_id] = [@listing.id]
     end
+    # raise
   end
 
   def new

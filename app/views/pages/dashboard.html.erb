@@ -224,7 +224,7 @@
                   <% else %>
                     <% @listings_searched.each do |listing| %>
                       <div class="listing-card">
-                        <h5><%= link_to listing.title, listing_path(listing)</h5> %>
+                        <h5><%= link_to listing.title, listing_path(listing) %></h5>
                       </div>
                     <% end %>
                   <% end %>
