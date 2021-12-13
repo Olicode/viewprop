@@ -1,1 +1,33 @@
 <h1>History</h1>
+<div class="container">
+  <div class="listings-sold-container">
+    <h2>Listings You Sold</h2>
+    <% if @accepted_seller_offers.empty? && @rejected_seller_offers.empty? %>
+      <p>You have not sold any listings yet.</p>
+    <% else %>
+      <div class="history-card">
+        <% @accepted_seller_offers.each do |offer| %>
+          <p>SOLD | <%= link_to offer.listing.title, listing_path(offer.listing) %> - <%= offer.final_price %>
+        <% end %>
+      </div>
+      <div class="history-card">
+        <% @rejected_seller_offers.each do |offer| %>
+          <p>SOLD | <%= link_to offer.listing.title, listing_path(offer.listing) %> - <%= offer.final_price %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="listings-bought-container">
+    <h2>Listings You Bought</h2>
+      <% if @accepted_buyer_offers.empty? %>
+        <p>You have not bought any listings.</p>
+      <% else %>
+        <% @accepted_buyer_offers.each do |offer| %>
+          <div class="history-card">
+            <p>BOUGHT | <%= link_to offer.listing.title, listing_path(offer.listing) %> - <% offer.final_price %>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
+

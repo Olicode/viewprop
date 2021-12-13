@@ -6,3 +6,18 @@
   text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
+
+#map {
+  border-radius: 8px;
+  position: sticky;
+  top: 82px;
+  margin-left: 2rem;
+}
+
+.col-3.map {
+  padding: 0px;
+}
+
+.col-9.map {
+  padding-left: 0px;
+}

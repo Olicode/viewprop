@@ -75,6 +75,13 @@ class ListingsController < ApplicationController
         lng: @listing.longitude
       }
     ]
+
+    if session[:listing_id].present?
+      session[:listing_id] << @listing.id
+    else
+      session[:listing_id] = [@listing.id]
+    end
+    # raise
   end
 
   def new
@@ -86,6 +93,7 @@ class ListingsController < ApplicationController
     @listing.user = current_user
     current_user.update(seller: true)
     if @listing.save
+      Notification.create(user: current_user, content: "You have uploaded a new listing", seller: true)
       redirect_to listing_path(@listing)
     else
       render :new
@@ -96,6 +104,7 @@ class ListingsController < ApplicationController
   end
 
   def update
+    Notification.create(user: current_user, content: "You have updated information for #{@listing.title}", seller: true)
     @listing.update(listing_params)
     redirect_to listing_path(@listing)
   end
