@@ -7,12 +7,12 @@
     <% else %>
       <div class="history-card">
         <% @accepted_seller_offers.each do |offer| %>
-          <p>ACCEPTED | <%= link_to offer.listing.title, listing_path(offer.listing) %> - <%= offer.final_price %>
+          <p>SOLD | <%= link_to offer.listing.title, listing_path(offer.listing) %> - <%= offer.final_price %>
         <% end %>
       </div>
       <div class="history-card">
         <% @rejected_seller_offers.each do |offer| %>
-          <p>REJECTED | <%= link_to offer.listing.title, listing_path(offer.listing) %> - <%= offer.final_price %>
+          <p>SOLD | <%= link_to offer.listing.title, listing_path(offer.listing) %> - <%= offer.final_price %>
         <% end %>
       </div>
     <% end %>
@@ -24,7 +24,7 @@
       <% else %>
         <% @accepted_buyer_offers.each do |offer| %>
           <div class="history-card">
-            <p>SOLD | <%= link_to offer.listing.title, listing_path(offer.listing) %> - <% offer.final_price %>
+            <p>BOUGHT | <%= link_to offer.listing.title, listing_path(offer.listing) %> - <% offer.final_price %>
           </div>
         <% end %>
       <% end %>
