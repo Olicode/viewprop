@@ -1,0 +1,21 @@
+.search-form {
+	background-color: $grey;
+	border: 2px solid $yellow;
+	border-radius: 8px;
+	width: 100%;
+	box-shadow: 1px 1px 2px 1px (rgba($yellow, 0.3));
+	padding: 8px 16px;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 0.8em;
+}
+
+.form-boolean {
+	padding: 10px 20px;
+	fieldset {
+		margin: 5px;
+	}
+}
+
+.search-button {
+}
