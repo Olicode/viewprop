@@ -39,6 +39,9 @@
       </div>
     </div>
   </div>
+  <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
+    <%= f.submit "Submit Listing", class: "btn btn-info" %>
+  </div>
 <nav>
   <div class="nav nav-pills" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-property-tab" data-toggle="tab" href="#nav-property" role="tab" aria-controls="nav-property" aria-selected="true">Property Details</a>
@@ -46,8 +49,5 @@
     <a class="nav-item nav-link" id="nav-payment-tab" data-toggle="tab" href="#nav-payment" role="tab" aria-controls="nav-payment" aria-selected="false">Confirmation & Payment</a>
   </div>
 </nav>
-  <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
-    <%= f.submit "Submit Listing", class: "btn btn-info" %>
-  </div>
 </div>
 <% end %>
