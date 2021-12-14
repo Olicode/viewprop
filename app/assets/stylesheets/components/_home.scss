@@ -48,7 +48,7 @@
 
 .card-work {
   overflow: hidden;
-  background: $light-grey;
+  background: #fffafa;
   box-shadow: 0 0 15px $light-grey;
   height: 300px;
   h3 {
@@ -60,21 +60,25 @@
 }
 
 .fa-comments-dollar {
+  margin-top: 2px;
   font-size: 80px;
   text-align: center;
 }
 
 .fa-calendar-alt {
+  margin-top: 2px;
   font-size: 80px;
   text-align: center;
 }
 
 .fa-search-location {
+  margin-top: 2px;
   font-size: 80px;
   text-align: center;
 }
 
 .fa-credit-card {
+  margin-top: 2px;
   font-size: 80px;
   text-align: center;
 }
