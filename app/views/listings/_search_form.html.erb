@@ -1,10 +1,27 @@
 <%= simple_form_for :search, url: listings_path, method: :get do |f| %>
   <div class="d-flex search-form">
-    <div><%= f.input :address %></div>
-    <div><%= f.input :price, collection: ["< 70.000", "70.000 - 150.000", "150.000 - 250.000", "250.000 - 450.000", "450.000 +"], label: "Price (usd)" %></div>
-    <div><%= f.input :bedroom, collection: 1..6, label: "Bedrooms" %></div>
-    <div><%= f.input :size, collection: ["< 50", "50 - 100", "100 +"], label: "Size (㎡)" %></div>
-    <div><%= f.input :bathroom, collection: 1..6, label: "Bathrooms" %></div>
+    <div><%= f.input :address, input_html: { value: params[:search].try(:[],:address) } %></div>
+    <% if params[:search].present? && params[:search][:price].present? %>
+      <div><%= f.input :price, collection: ["< 70.000", "70.000 - 150.000", "150.000 - 250.000", "250.000 - 450.000", "450.000 +"], label: "Price (pounds)", selected: params[:search].try(:[],:price) %></div>
+    <% else %>
+      <div><%= f.input :price, collection: ["< 70.000", "70.000 - 150.000", "150.000 - 250.000", "250.000 - 450.000", "450.000 +"], label: "Price (pounds)" %></div>
+    <% end %>
+    <% if params[:search].present? && params[:search][:bedroom].present? %>
+      <div><%= f.input :bedroom, collection: 1..6, label: "Bedrooms", selected: params[:search].try(:[],:bedroom) %></div>
+    <% else %>
+      <div><%= f.input :bedroom, collection: 1..6, label: "Bedrooms" %></div>
+    <% end %>
+    <% if params[:search].present? && params[:search][:size].present? %>
+      <div><%= f.input :size, collection: ["< 50", "50 - 100", "100 +"], label: "Size (㎡)", selected: params[:search].try(:[],:size) %></div>
+    <% else %>
+      <div><%= f.input :size, collection: ["< 50", "50 - 100", "100 +"], label: "Size (㎡)" %></div>
+    <% end %>
+    <% if params[:search].present? && params[:search][:bathroom].present? %>
+      <div><%= f.input :bathroom, collection: 1..6, label: "Bathrooms", selected: params[:search].try(:[],:bathroom) %></div>
+    <% else %>
+      <div><%= f.input :bathroom, collection: 1..6, label: "Bathrooms" %></div>
+    <% end %>
+
     <div class="form-boolean">
       <div><%= f.input :instant_booking, as: :boolean, boolean_style: :inline %></div>
       <div><%= f.input :negotiable, as: :boolean, boolean_style: :inline %></div>
@@ -12,5 +29,3 @@
     <div class="search-button"><%= f.submit "Search!", class: "btn search-button" %></div>
   </div>
 <% end %>
-
-<%# params[:search].try(:[],:address) %>
