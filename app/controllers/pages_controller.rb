@@ -2,6 +2,7 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
+    @listings = Listing.where(instant_booking: true).first(6)
   end
 
   def dashboard
