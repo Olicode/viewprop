@@ -10,6 +10,8 @@ class Listing < ApplicationRecord
   validates :title, uniqueness: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
 
+  after_create :update_user_to_seller
+
   include PgSearch::Model
   pg_search_scope :search_by_address,
                   against: :address,
@@ -46,4 +48,8 @@ class Listing < ApplicationRecord
                   using: {
                     tsearch: { prefix: true }
                   }
+
+  def update_user_to_seller
+    user.update(seller: true)
+  end
 end
