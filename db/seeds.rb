@@ -24,222 +24,42 @@ puts "Finished creating users"
 
 puts "Creating listings..."
 
-Listing.create!({
-                  title: "Ubud prime location, huge opportunity!",
-                  address: "Ubud, Bali",
-                  description: "3 BR luxury villa",
-                  price: 399_000,
-                  negotiable: true,
-                  instant_booking: true,
-                  user: User.first,
-                  size: 113,
-                  bedroom: 3,
-                  bathroom: 2
-                })
+LOCATION = ["Ubud", "Canggu", "Uluwatu", "Semiyak", "Denpasssar", "Jembrana", "Singaraja"]
+VERB = ["great", "nice", "secluded", "quiet", "green", "marvelous"]
+SPOT = ["area", "location"]
+PHRASE = ["huge opportunity!", "development opportunity!", "with amazing ocean view!", "luxury Penthouse!", "beautifull Villa"]
+PRICE = [45_000, 75_000, 110_000, 144_000, 178_000, 220_000, 267_000, 290_000, 320_000, 362_000, 490_000]
+NEGOTIABLE = [true, false]
+INSTANT = [true, false]
+USER = [User.first, User.second, User.third, User.fourth]
+SIZE = [44, 56, 76, 90, 112, 126, 144, 167]
+BEDROOM = [1, 2, 3, 4]
+BATHROOM = [1, 2, 3, 4]
 
-Listing.create!({
-                  title: "Canggu quiet location, huge opportunity!",
-                  address: "Canggu, Bali",
-                  description: "3 BR luxury villa",
-                  price: 299_000,
-                  negotiable: false,
-                  instant_booking: true,
-                  user: User.second,
-                  size: 110,
-                  bedroom: 3,
-                  bathroom: 3
-                })
-
-Listing.create!({
-                  title: "Ubud quiet location, development opportunity!",
-                  address: "Ubud, Bali",
-                  description: "4 BR villa",
-                  price: 180_000,
-                  negotiable: false,
-                  instant_booking: true,
-                  user: User.third,
-                  size: 130,
-                  bedroom: 4,
-                  bathroom: 2
-                })
-
-Listing.create!({
-                  title: "Uluwatu quiet location, ocean view petite apt!",
-                  address: "Uluwatu, Bali",
-                  description: "1 BR luxury apt",
-                  price: 280_000,
-                  negotiable: false,
-                  instant_booking: false,
-                  user: User.fourth,
-                  size: 44,
-                  bedroom: 1,
-                  bathroom: 1
-                })
-
-Listing.create!({
-                  title: "Canggu prime location, huge opportunity!",
-                  address: "Canggu, Bali",
-                  description: "2 BR villa",
-                  price: 269_000,
-                  negotiable: true,
-                  instant_booking: true,
-                  user: User.first,
-                  size: 70,
-                  bedroom: 2,
-                  bathroom: 2
-                })
-
-Listing.create!({
-                  title: "Canggu, secluded green gem!",
-                  address: "Canggu, Bali",
-                  description: "3 BR luxury villa",
-                  price: 323_000,
-                  negotiable: true,
-                  instant_booking: false,
-                  user: User.second,
-                  size: 120,
-                  bedroom: 3,
-                  bathroom: 3
-                })
-
-Listing.create!({
-                  title: "Denpasar, close to International Airport!",
-                  address: "Denpasar, Bali",
-                  description: "2 BR apartment",
-                  price: 156_000,
-                  negotiable: true,
-                  instant_booking: false,
-                  user: User.third,
-                  size: 62,
-                  bedroom: 2,
-                  bathroom: 1
-                })
-
-Listing.create!({
-                  title: "Uluwatu quiet location, ocean view luxury Penthouse!",
-                  address: "Uluwatu, Bali",
-                  description: "3 BR penthouse",
-                  price: 396_000,
-                  negotiable: true,
-                  instant_booking: false,
-                  user: User.fourth,
-                  size: 132,
-                  bedroom: 3,
-                  bathroom: 3
-                })
-
-
-
-
-Listing.create!({
-                  title: "Denpassar prime location, huge opportunity!",
-                  address: "Denpassar, Bali",
-                  description: "3 BR luxury villa",
-                  price: 399_000,
-                  negotiable: false,
-                  instant_booking: false,
-                  user: User.first,
-                  size: 113,
-                  bedroom: 3,
-                  bathroom: 2
-                })
-
-Listing.create!({
-                  title: "Uluwatu quiet location, huge opportunity!",
-                  address: "Uluwatu, Bali",
-                  description: "3 BR luxury villa",
-                  price: 299_000,
-                  negotiable: true,
-                  instant_booking: false,
-                  user: User.second,
-                  size: 110,
-                  bedroom: 3,
-                  bathroom: 3
-                })
-
-Listing.create!({
-                  title: "Denpassar quiet location, development opportunity!",
-                  address: "Denpassar, Bali",
-                  description: "4 BR villa",
-                  price: 180_000,
-                  negotiable: true,
-                  instant_booking: false,
-                  user: User.third,
-                  size: 130,
-                  bedroom: 4,
-                  bathroom: 2
-                })
-
-Listing.create!({
-                  title: "Jembrana quiet location, ocean view petite apt!",
-                  address: "Jembrana, Bali",
-                  description: "1 BR luxury apt",
-                  price: 280_000,
-                  negotiable: true,
-                  instant_booking: true,
-                  user: User.fourth,
-                  size: 44,
-                  bedroom: 1,
-                  bathroom: 1
-                })
-
-Listing.create!({
-                  title: "Uluwatu prime location, huge opportunity!",
-                  address: "Uluwatu, Bali",
-                  description: "2 BR villa",
-                  price: 269_000,
-                  negotiable: false,
-                  instant_booking: false,
-                  user: User.first,
-                  size: 70,
-                  bedroom: 2,
-                  bathroom: 2
-                })
-
-Listing.create!({
-                  title: "Jembrana, secluded green gem!",
-                  address: "Jembrana, Bali",
-                  description: "3 BR luxury villa",
-                  price: 323_000,
-                  negotiable: false,
-                  instant_booking: true,
-                  user: User.second,
-                  size: 120,
-                  bedroom: 3,
-                  bathroom: 3
-                })
-
-Listing.create!({
-                  title: "Canggu, close to International Airport!",
-                  address: "Canggu, Bali",
-                  description: "2 BR apartment",
-                  price: 156_000,
-                  negotiable: false,
-                  instant_booking: true,
-                  user: User.third,
-                  size: 62,
-                  bedroom: 2,
-                  bathroom: 1
-                })
-
-Listing.create!({
-                  title: "Singaraja quiet location, ocean view luxury Penthouse!",
-                  address: "Singaraja, Bali",
-                  description: "3 BR penthouse",
-                  price: 396_000,
-                  negotiable: false,
-                  instant_booking: true,
-                  user: User.fourth,
-                  size: 132,
-                  bedroom: 3,
-                  bathroom: 3
-                })
+30.times do
+  x = LOCATION.sample
+  y = VERB.sample
+  z = SPOT.sample
+  t = PHRASE.sample
+  Listing.create({
+                    title: "#{x} #{y} #{z}, #{t}",
+                    address: "#{LOCATION.sample}, Bali",
+                    description: "#{BEDROOM.sample} BR luxury villa",
+                    price: PRICE.sample,
+                    negotiable: NEGOTIABLE.sample,
+                    instant_booking: INSTANT.sample,
+                    user: USER.sample,
+                    size: SIZE.sample,
+                    bedroom: BEDROOM.sample,
+                    bathroom: BATHROOM.sample
+                  })
+end
 
 puts "Finished creating listings!"
 
 puts "Create bookings"
 
-Booking.create!({
+Booking.create({
                   date: "12-04-2021",
                   start_time: "9:30",
                   end_time: "10:00",
@@ -247,7 +67,7 @@ Booking.create!({
                   listing: Listing.third,
                   user: User.first
                 })
-Booking.create!({
+Booking.create({
                   date: "12-12-2021",
                   start_time: "10:30",
                   end_time: "11:00",
@@ -255,7 +75,7 @@ Booking.create!({
                   listing: Listing.first,
                   user: User.second
                 })
-Booking.create!({
+Booking.create({
                   date: "14-07-2021",
                   start_time: "7:30",
                   end_time: "08:00",
@@ -263,7 +83,7 @@ Booking.create!({
                   listing: Listing.second,
                   user: User.third
                 })
-Booking.create!({
+Booking.create({
                   date: "12-12-2021",
                   start_time: "13:30",
                   end_time: "14:00",
