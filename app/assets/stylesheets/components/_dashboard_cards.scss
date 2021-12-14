@@ -21,7 +21,9 @@
   width: 220px;
   height: 130px;
   border-radius: 3px;
-
+  p {
+    margin-bottom: 2px;
+  }
 }
 
 .counter-button {
@@ -69,6 +71,7 @@
     font-size: 16px;
   }
 }
+
 
 // .booking-card {}
 
