@@ -29,11 +29,7 @@
               <% end %>
               <div class="card-body p-3">
                 <h4><strong><i class="fas fa-pound-sign"></i> <%= listing.price %></strong></h4>
-                <% if listing.sold %>
-                    <div class="d-flex"><p><%= listing.title.truncate(50) %></p></div>
-                  <% else %>
-                    <div class="d-flex"><p><%= listing.title.truncate(50) %></p></div>
-                  <% end %>
+                  <div class="d-flex"><p><%= listing.title.truncate(40) %></p></div>
                 <div class="bedroom-bathroom d-flex">
                   <i class="fas fa-bed mr-1 mt-1"></i>
                     <% if listing.bedroom.nil? %>
