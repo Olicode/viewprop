@@ -20,7 +20,7 @@
         <div class="mr-3"><%= f.input :size, label: "Size (㎡)" %></div>
         <div class="mr-3"><%= f.input :bedroom, collection: 1..6, label: "Bedrooms" %></div>
         <div class="mr-3"><%= f.input :bathroom, collection: 1..6, label: "Bathrooms" %></div>
-        <div><%= f.input :price, collection: ["< 70.000", "70.000 - 150.000", "150.000 - 250.000", "250.000 - 450.000", "450.000 +"], label: "Price (usd)" %></div>
+        <div><%= f.input :price, label: "Price (usd)" %></div>
         <div class="ml-5 mt-3">
           <div><%= f.input :instant_booking, as: :boolean, boolean_style: :inline %></div>
           <div><%= f.input :negotiable, as: :boolean, boolean_style: :inline %></div>

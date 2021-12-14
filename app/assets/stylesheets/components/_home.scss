@@ -31,3 +31,11 @@
 	border-radius: 24px;
 	padding: 8px 8px 8px 16px;
 }
+
+.homepage-a {
+	font-size: 1.5em;
+	color: $dark-grey;
+	&:hover {
+		text-decoration: underline;
+	}
+}
