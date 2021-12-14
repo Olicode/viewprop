@@ -5,11 +5,11 @@
   </section>
 
   <div class="main-container d-flex">
-    <div class="row">
+    <div class="listings-wrapper">
       <% @listings.each do |listing| %>
-        <div class="col-md-4">
+        <div class="">
           <%= link_to listing_path(listing), class: "card-link-wrapper" do %>
-            <div class="card mb-3 mr-2" style="width: 16rem; height: 320px">
+            <div class="card mb-3 mr-2" style="height: 320px">
               <% if listing.photos.attached?%>
                 <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path listing.photos.first.key, crop: :fill %>')">
                   <% if listing.instant_booking %>
@@ -51,7 +51,7 @@
       <% end %>
     </div>
     <div id="map"
-      style="width: 85%; height: 600px;"
+      style="width: 400px; height: 600px;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 
