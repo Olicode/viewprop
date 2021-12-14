@@ -1,6 +1,6 @@
 <div class="main-container d-flex">
   <div class="row">
-    <% @listings.each do |listing| %>
+    <% listings.each do |listing| %>
       <div class="col-md-4">
         <%= link_to listing_path(listing), class: "card-link-wrapper" do %>
           <div class="card mb-3 mr-2">
