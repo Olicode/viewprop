@@ -51,11 +51,15 @@
   background: #fffafa;
   box-shadow: 0 0 15px $light-grey;
   height: 300px;
+  border-radius: 6px;
   h3 {
     font-size: 22px;
+    font-weight: bolder;
+    color: $dark-grey;
   }
   p {
     font-size: 15px;
+    color: $dark-grey;
   }
 }
 
@@ -63,22 +67,26 @@
   margin-top: 2px;
   font-size: 80px;
   text-align: center;
+  color: $dark-grey;
 }
 
 .fa-calendar-alt {
   margin-top: 2px;
   font-size: 80px;
   text-align: center;
+  color: $dark-grey;
 }
 
 .fa-search-location {
   margin-top: 2px;
   font-size: 80px;
   text-align: center;
+  color: $dark-grey;
 }
 
 .fa-credit-card {
   margin-top: 2px;
   font-size: 80px;
   text-align: center;
+  color: $dark-grey;
 }
