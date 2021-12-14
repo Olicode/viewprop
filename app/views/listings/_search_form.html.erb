@@ -12,3 +12,5 @@
     <div class="search-button"><%= f.submit "Search!", class: "btn search-button" %></div>
   </div>
 <% end %>
+
+params[:search].try(:[],:address)
