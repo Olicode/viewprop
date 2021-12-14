@@ -16,7 +16,7 @@
 
   <h3 class="m-5 text-center" >Check out some of our current available instant viewings:</h3>
   <section class="mb-3">
-    <%= render 'shared/card' %>
+    <%= render 'shared/card', listings:@listings %>
   </section>
   <%= link_to "See all of our current listings..",  listings_path, class:"homepage-a" %>
 
