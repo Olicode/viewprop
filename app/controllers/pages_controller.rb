@@ -25,7 +25,7 @@ class PagesController < ApplicationController
     @pending_buyer_offers = @offers_buyer.where(buyer_confirmed: false, seller_confirmed: true)
     @accepted_buyer_offers = @offers_buyer.where(buyer_confirmed: true, seller_confirmed: true)
     @rejected_buyer_offers = @offers_buyer.where(buyer_confirmed: false, seller_confirmed: false)
-    @listings_searched = session[:listing_id].map { |id| Listing.find(id) }
+    @listings_searched = session[:listing_id] ? session[:listing_id].map { |id| Listing.find(id) } : []
     # seller notifications
     @seller_notifications = current_user.notifications.where(seller: true)
     # buyer notifications

@@ -8,7 +8,9 @@
   <% else %>
     <div><p><i class="fas fa-circle text-success"></i> AVAILABLE</i></div>
   <% end %>
-  <%= link_to "Send a message to #{@listing.user.first_name}", conversation_path(@conversation) %>
+  <% if @listing.user != current_user %>
+    <%= link_to "Send a message to #{@listing.user.first_name}", conversation_path(@conversation) %>
+  <% end %>
 
   <%# buttons %>
   <% if @listing.user == current_user %>
