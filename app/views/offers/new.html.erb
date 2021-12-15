@@ -1,9 +1,12 @@
-<div class="container">
-  <h1>Create an offer for <%= @listing.title %></h1>
+<div class="container offer">
+  <h1>Create an offer for <span><%= @listing.title %></span></h1>
   <div class="form-offer">
     <%= simple_form_for [@listing, @offer] do |f| %>
-    <%= f.input :final_price, placeholder: "#{@listing.price}" %>
-    <%= f.button :submit %>
-    <% end %>
+    <%= f.input :final_price, input_html: { value: @listing.price } %>
+    <div class="d-flex">
+      <%= f.button :submit, class:"btn btn-info" %>
+      <% end %>
+      <%= link_to 'Back', listing_path(@listing), class:"ml-3 btn btn-secondary" %>
+    </div>
   </div>
 </div>
