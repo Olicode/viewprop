@@ -185,7 +185,7 @@
                       <% else %>
                         <% @pending_buyer_bookings.each do |booking|%>
                           <div class="booking-card">
-                            <p> <%= booking.status.upcase %> | Booking for <%= booking.listing.title %><p>
+                            <p> <%= booking.status.upcase %> | <%= link_to "Booking for #{booking.listing.title}", booking_path(booking) %><p>
                             <p><%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
                           </div>
                         <% end %>
@@ -214,7 +214,7 @@
                       <% end %>
                       <% @current_buyer_bookings.each do |booking|%>
                         <div class="pending-booking-card">
-                          <p><%= booking.status %> | <%= booking.listing.title %> | <%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
+                          <p><%= booking.status %> | <%= link_to booking.listing.title, booking_path(booking) %> | <%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
                         </div>
                       <% end %>
                     <% end %>
