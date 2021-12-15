@@ -1,0 +1,30 @@
+.chat {
+	width: 50%;
+	margin-top: 50px;
+	h1 {
+		color: $dark;
+	}
+}
+
+.message-container {
+	background-color: #fff;
+	margin: 8px 0px;
+	padding: 8px 12px;
+	border-radius: 8px;
+	border: 1px solid $light-grey;
+	color: $grey;
+	p {
+		margin: 4px 0px;
+		font-size: 1.1em;
+		color: $dark-grey;
+	}
+}
+
+.form-control#message_content {
+	border-radius: 4px;
+	border: 1px solid $dark-grey;
+}
+
+#messages {
+	margin-bottom: 16px;
+}
