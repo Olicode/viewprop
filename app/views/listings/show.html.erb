@@ -8,24 +8,28 @@
   <% else %>
     <div><p><i class="fas fa-circle text-success"></i> AVAILABLE</i></div>
   <% end %>
-  <% if @listing.user != current_user %>
-    <%= link_to "Send a message to #{@listing.user.first_name}", conversation_path(@conversation, from: @listing.id) %>
-  <% end %>
 
   <%# buttons %>
   <% if @listing.user == current_user %>
     <button type="button" class="btn btn-lg btn-light mb-4"> <%= link_to "Edit", edit_listing_path(@listing) %></button>
   <% else %>
-    <div class="booking-offer-buttons d-flex mb-2">
+    <div class="booking-offer-buttons d-flex">
       <% if @listing.sold %>
         <button type="button" class="btn btn-secondary btn-lg mr-4" disabled><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
         <button type="button" class="btn btn-secondary btn-lg" disabled><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
       <% else %>
-        <button type="button" class="btn btn-lg btn-light mr-4"><%= link_to "Place an offer", new_listing_offer_path(@listing) %></button>
-        <button type="button" class="btn btn-lg btn-light"><%= link_to "Schedule a viewing", new_listing_booking_path(@listing) %></button>
+
+          <div class="offer_btn"><%= render 'shared/offer_form' %></div>
+          <div class="booking_btn"><%= render 'shared/booking_form' %></div>
+
+          <% if @listing.user != current_user %>
+            <div><%= link_to "Send a message to #{@listing.user.first_name}", conversation_path(@conversation, from: @listing.id), class:"btn btn-outline-dark" %></div>
+          <% end %>
+
       <% end %>
     </div>
   <% end %>
+
   <br>
 
   <%# carousel %>
@@ -52,7 +56,7 @@
     </button>
   </div>
 
-  
+
 
 
   <%# prices %>

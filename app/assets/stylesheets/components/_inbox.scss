@@ -1,6 +1,11 @@
 .inbox {
 	width: 60%;
-	margin-top: 50px;
+	margin-top: 75px;
+	background-color: $light-grey;
+	overflow: scroll;
+	padding: 24px;
+	border-radius: 4px;
+	box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
 	h1 {
 		color: $dark;
 		margin-bottom: 24px;

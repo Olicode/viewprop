@@ -1,6 +1,12 @@
 .chat {
+	background-color: $light-grey;
+	border-radius: 4px;
+	box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+	max-height: 500px;
+	padding: 24px;
 	width: 50%;
-	margin-top: 50px;
+	margin-top: 100px;
+	overflow: scroll;
 	h1 {
 		color: $dark;
 	}
