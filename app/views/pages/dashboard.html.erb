@@ -1,4 +1,4 @@
-<div class="mt-2 p-5">
+<div class="p-5">
   <h1>Welcome, <%= current_user.first_name.capitalize %></h1>
   <ul class="nav nav-pills" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
@@ -20,22 +20,21 @@
                 <div class="col-lg-4">
                   <div class="offer-booking-container" >
                     <div class="offer-container">
-                      <h3>Offer Requests</h3>
-                      <p class="mt-1"><%= link_to "See your offer history", history_path %></p>
+                      <h3 class="dashboard-title">Offer Requests</h3>
                       <div class="offer-cards card">
                         <% if @pending_seller_offers.empty? && @waiting_seller_offers.empty? %>
                           <p>You have no pending offers.</p>
                         <% else %>
                           <% @waiting_seller_offers.each do |offer| %>
                             <div class="offer-card p-3">
-                              <p class="mb-0"> <strong><%= offer.listing.title %></strong> </p>
+                              <p class="mb-0"> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
                               <p class="mb-0"> <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                               <p class="mb-1 response"> --- Waiting for response --- </p>
                             </div>
                           <% end %>
                           <% @pending_seller_offers.each do |offer| %>
                             <div class="offer-card p-3">
-                              <p class="mb-0"> <strong><%= offer.listing.title %></strong> </p>
+                              <p class="mb-0"> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
                               <p class="mb-0"> <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                               <% if offer.listing.negotiable %>
                                 <%= link_to edit_offer_path(offer) do %>
@@ -56,7 +55,7 @@
                       </div>
                     </div>
                     <div class="booking-container">
-                      <h3 class="mt-3">Booking Requests</h3>
+                      <h3 class="dashboard-title mt-3">Booking Requests</h3>
                       <div class="offer-cards card">
                         <% if @pending_seller_bookings.empty? %>
                           <p class="p-2">You don't have any pending bookings.</p>
@@ -64,7 +63,7 @@
                           <% @pending_seller_bookings.each do |booking|%>
                             <div class="offer-card">
                               <p><%= link_to "Booking for #{booking.listing.title}", booking_path(booking) %><p>
-                              <p><%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
+                              <p><%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
                               <%= link_to booking_path(booking, { booking: { status: "Accepted" } }), method: :patch do %>
                                 <i class="fas fa-check"></i>
                               <% end %>
@@ -81,41 +80,42 @@
 
                 <div class="col-lg-8">
                   <div class="booking-notification-container">
-                    <h3 class="sd">Offers & Bookings</h3>
-                    <div class="card p-3" style="height: 300px">
-                    <% if @accepted_seller_offers.empty? && @rejected_seller_offers.empty? && @current_seller_bookings.empty? %>
-                      <p>You have no offers or bookings yet</p>
-                    <% else %>
-                      <% @accepted_seller_offers.each do |offer| %>
-                        <div class="offer-booking-card bg-light">
-                          <p>ACCEPTED</p>
-                          <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
-                        </div>
+                    <h3 class="dashboard-title">Offers & Bookings</h3>
+                    <p><%= link_to "See your offer history", history_path %></p>
+
+                    <div class="booking-notification-cards p-3">
+                      <% if @accepted_seller_offers.empty? && @rejected_seller_offers.empty? && @current_seller_bookings.empty? %>
+                        <p>You have no offers or bookings yet</p>
+                      <% else %>
+                        <% @accepted_seller_offers.each do |offer| %>
+                          <div class="offer-booking-card bg-light">
+                            <p>Accepted | Offer for <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                          </div>
+                        <% end %>
+                        <% @rejected_seller_offers.each do |offer| %>
+                          <div class="offer-booking-card bg-light p-2">
+                            <p>Rejected | Offer for <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                          </div>
+                        <% end %>
+                        <% @current_seller_bookings.each do |booking|%>
+                          <div class="offer-booking-card">
+                            <p class="mb-0"><%= booking.status %> | Booking for <%= link_to booking.listing.title, booking_path(booking) %></p>
+                            <p><%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
+                          </div>
+                        <% end %>
                       <% end %>
-                      <% @rejected_seller_offers.each do |offer| %>
-                        <div class="offer-booking-card bg-light p-2">
-                          <p>REJECTED</p>
-                          <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
-                        </div>
-                      <% end %>
-                      <% @current_seller_bookings.each do |booking|%>
-                        <div class="offer-booking-card">
-                          <p><%= booking.status %> | <%= link_to booking.listing.title, booking_path(booking) %> | <%= booking.date %> | <%= booking.start_time %> - <%= booking.end_time %></p>
-                        </div>
-                      <% end %>
-                    <% end %>
-                  </div>
+                    </div>
                   </div>
                 </div>
               </div>
               <div class="listing-viewing-container mt-5">
                 <div class="listing-viewing-title d-flex align-items-center">
-                  <h3 class="mr-4">All your listings</h3>
+                  <h3 class="dashboard-title mr-4">All your listings</h3>
                   <p class="mr-3 mb-0"><%= link_to "Listings sold", history_path %></p>
                   <p class="mb-0"><%= link_to "Add a new listing", new_listing_path %></p>
                 </div>
                 <div class="listing-cards mt-3">
-                  <section class="mb-3">
+                  <section>
                     <div class="main-container d-flex">
                         <%= render 'shared/card', listings: @my_listings %>
                     </div>
@@ -125,15 +125,15 @@
             </div>
           </div>
           <div class="col-lg-3">
-            <div class="right-dashboard-container ">
+            <div class="right-dashboard-container">
               <div class="notification-container">
+                <h3 class="dashboard-title">Notifications</h3>
                 <div class="notification-cards">
-                  <h3>Notifications</h3>
                   <% if @seller_notifications.empty? %>
-                    <p>You have no notifications</p>
+                    <p class="p-3">You have no notifications</p>
                   <% else %>
                     <% @seller_notifications.each do |notification| %>
-                      <div class="notification-card card p-3 mb-2">
+                      <div class="notification-card">
                         <p><%= notification.content %></p>
                       </div>
                     <% end %>
@@ -151,41 +151,88 @@
             <div class="left-dashboard-container">
               <div class="row">
                 <div class="col-lg-4">
-                  <div class="offer-booking-container card">
-                    <div class="offer-container m-3">
-                      <h3>Pending Offers</h3>
-                      <% if @pending_buyer_offers.empty? && @waiting_buyer_offers.empty? %>
-                        <p>You have not made any offers.</p>
-                      <% else %>
-                        <% @waiting_buyer_offers.each do |offer| %>
-                          <div class="offer-card bg-light p-2">
-                            <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
-                            <p> Waiting for response </p>
-                          </div>
-                      <p><%= link_to "See your offer history", history_path %></p>
+                  <div class="offer-booking-container">
+                    <div class="offer-container">
+                      <h3 class="dashboard-title">Pending Offers</h3>
+                      <div class="offer-cards card">
+                        <% if @pending_buyer_offers.empty? && @waiting_buyer_offers.empty? %>
+                          <p class="p-3">You have no pending offers.</p>
+                        <% else %>
+                          <% @waiting_buyer_offers.each do |offer| %>
+                            <div class="offer-card p-3">
+                              <p class="mb-0"> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
+                              <p class="mb-0"> <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                              <br>
+                              <p class="mb-1 response"> --- Waiting for response --- </p>
+                            </div>
+                          <% end %>
+                          <% @pending_buyer_offers.each do |offer| %>
+                            <div class="offer-card p-3">
+                              <p class="mb-0"> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
+                              <p class="mb-0"> <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                              <% if offer.listing.negotiable %>
+                                <%= link_to edit_offer_path(offer) do %>
+                                  <button type="button" class="btn btn-outline-secondary mr-1 mt-1" style="width: 100%">Counter Offer</button>
+                                <% end %>
+                              <% end %>
+                              <div class="d-flex">
+                                <%= link_to offer_path(offer, accept: true), method: :patch do %>
+                                  <button type="button" class="btn btn-outline-secondary accept-button" style="width: 132px">Accept</button>
+                                <% end %>
+                                <%= link_to offer_path(offer, { offer: { seller_confirmed: false, buyer_confirmed: false } }), method: :patch do %>
+                                  <button type="button" class="btn btn-outline-secondary mb-3" style="width: 132px">Reject</button>
+                              </div>
+                              <% end %>
+                            </div>
+                          <% end %>
                         <% end %>
-                        <% @pending_buyer_offers.each do |offer| %>
-                          <div class="offer-card bg-light p-2">
-                            <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
-                            <button type="button" class="btn btn-warning"><%= link_to "Counter", edit_offer_path(offer) %></button>
-                            <%= link_to offer_path(offer, accept: true), method: :patch do %>
-                              <button type="button" class="btn btn-success">Accept</button>
-                            <% end %>
-                            <%= link_to offer_path(offer, { offer: { seller_confirmed: false, buyer_confirmed: false } }), method: :patch do %>
-                              <button type="button" class="btn btn-danger">Reject</button>
-                            <% end %>
-                          </div>
-                        <% end %>
-                      <% end %>
+                      </div>
                     </div>
-                    <div class="booking-container m-3">
-                      <h3>Pending Bookings</h3>
-                      <% if @pending_buyer_bookings.empty? %>
-                        <p>You don't have any pending bookings.</p>
+                    <div class="booking-container">
+                      <h3 class="dashboard-title mt-3">Pending Bookings</h3>
+                      <div class="offer-cards card">
+                        <% if @pending_buyer_bookings.empty? %>
+                          <p class="p-2">You don't have any pending bookings.</p>
+                        <% else %>
+                          <% @pending_buyer_bookings.each do |booking|%>
+                            <div class="offer-card">
+                              <p><%= link_to "Booking for #{booking.listing.title}", booking_path(booking) %><p>
+                              <p><%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
+                              <%= link_to booking_path(booking, { booking: { status: "Accepted" } }), method: :patch do %>
+                                <i class="fas fa-check"></i>
+                              <% end %>
+                              <%= link_to booking_path(booking, { booking: { status: "Rejected" } }), method: :patch do %>
+                                <i class="fas fa-times"></i>
+                              <% end %>
+                            </div>
+                          <% end %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-8">
+                  <div class="booking-notification-container">
+                    <h3 class="dashboard-title">Offers & Bookings</h3>
+                    <p><%= link_to "See your offer history", history_path %></p>
+                    <div class="booking-notification-cards p-3">
+                      <% if @accepted_buyer_offers.empty? && @rejected_buyer_offers.empty? && @current_buyer_bookings.empty? %>
+                        <p>You have no offers or bookings yet</p>
                       <% else %>
-                        <% @pending_buyer_bookings.each do |booking|%>
-                          <div class="booking-card">
-                            <p> <%= booking.status.upcase %> | <%= link_to "Booking for #{booking.listing.title}", booking_path(booking) %><p>
+                        <% @accepted_buyer_offers.each do |offer| %>
+                          <div class="offer-booking-card bg-light">
+                            <p>Accepted | Offer for <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                          </div>
+                        <% end %>
+                        <% @rejected_buyer_offers.each do |offer| %>
+                          <div class="offer-booking-card bg-light">
+                            <p>Rejected | Offer for <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                          </div>
+                        <% end %>
+                        <% @current_buyer_bookings.each do |booking|%>
+                          <div class="offer-booking-card">
+                            <p class="mb-0"><%= booking.status %> | Booking for <%= link_to booking.listing.title, booking_path(booking) %></p>
                             <p><%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
                           </div>
                         <% end %>
@@ -193,65 +240,38 @@
                     </div>
                   </div>
                 </div>
-
-                <div class="col-lg-8 card">
-                  <div class="booking-notification-container">
-                    <h3 class="mt-3">Offers & Bookings</h3>
-                    <% if @accepted_buyer_offers.empty? && @rejected_buyer_offers.empty? && @current_buyer_bookings.empty? %>
-                      <p>You have no offers or bookings yet</p>
-                    <% else %>
-                      <% @accepted_buyer_offers.each do |offer| %>
-                        <div class="offer-card bg-light p-2">
-                          <p>ACCEPTED</p>
-                          <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
-                        </div>
-                      <% end %>
-                      <% @rejected_buyer_offers.each do |offer| %>
-                        <div class="offer-card bg-light p-2">
-                          <p>REJECTED</p>
-                          <p> <strong><%= offer.listing.title %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
-                        </div>
-                      <% end %>
-                      <% @current_buyer_bookings.each do |booking|%>
-                        <div class="pending-booking-card">
-                          <p><%= booking.status %> | <%= link_to booking.listing.title, booking_path(booking) %> | <%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
-                        </div>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
               </div>
-              <div class="listing-viewing-container card mt-3" style="width: 837px;">
+              <div class="listing-viewing-container mt-5">
                 <div class="listing-viewing-title d-flex align-items-center m-3">
-                  <h3 class="mr-4">Listings you've searched for</h3>
+                  <h3 class="dashboard-title mr-4">Listings you've searched for</h3>
                 </div>
-                <div class="listing-cards m-3">
+                <div class="listing-cards mt-3">
                   <% if @listings_searched == [] %>
                     <p> <%= link_to "Search through our listings", listings_path %> </p>
                   <% else %>
-                    <% @listings_searched.each do |listing| %>
-                      <div class="listing-card">
-                        <h5><%= link_to listing.title, listing_path(listing) %></h5>
+                    <section>
+                      <div class="main-container d-flex">
+                        <%= render 'shared/card', listings: @listings_searched %>
                       </div>
-                    <% end %>
+                    </section>
                   <% end %>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-lg-3">
-            <div class="right-dashboard-container card">
-              <div class="notification-container m-3">
+            <div class="right-dashboard-container">
+              <div class="notification-container">
+                <h3 class="dashboard-title">Notifications</h3>
                 <div class="notification-cards">
-                  <h3>Notifications</h3>
                   <% if @buyer_notifications.empty? %>
-                    <p>You have no notifications</p>
+                    <p class="p-3">You have no notifications</p>
                   <% else %>
-                    <div class="notification-card">
-                      <% @buyer_notifications.each do |notification| %>
+                    <% @buyer_notifications.each do |notification| %>
+                      <div class="notification-card">
                         <p><%= notification.content %></p>
-                      <% end %>
-                    </div>
+                      </div>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
