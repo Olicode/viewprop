@@ -1,5 +1,5 @@
 .banner {
-	background-image: linear-gradient(rgba(80, 80, 80, 0.6), rgba(80, 80, 80, 0.6)),
+	background-image: linear-gradient(rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 0.5)),
 		asset-url('homepage');
 	height: 95vh;
 	width: 100%;
@@ -41,87 +41,86 @@
 }
 
 .card-benefits > img {
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
+	height: 200px;
+	width: 100%;
+	object-fit: cover;
 }
 
 .card-work {
-  overflow: hidden;
-  background: #fffafa;
-  box-shadow: 0 0 15px $light-grey;
-  height: 300px;
-  border-radius: 6px;
-  h3 {
-    font-size: 22px;
-    font-weight: bolder;
-    color: $dark-grey;
-  }
-  p {
-    font-size: 15px;
-    color: $dark-grey;
-  }
+	overflow: hidden;
+	background: #fffafa;
+	box-shadow: 0 0 15px $light-grey;
+	height: 300px;
+	border-radius: 6px;
+	h3 {
+		font-size: 22px;
+		font-weight: bolder;
+		color: $dark-grey;
+	}
+	p {
+		font-size: 15px;
+		color: $dark-grey;
+	}
 }
 
 .fa-comments-dollar {
-  margin-top: 2px;
-  font-size: 80px;
-  text-align: center;
-  color: $dark-grey;
+	margin-top: 2px;
+	font-size: 80px;
+	text-align: center;
+	color: $dark-grey;
 }
 
 .fa-calendar-alt {
-  margin-top: 2px;
-  font-size: 80px;
-  text-align: center;
-  color: $dark-grey;
+	margin-top: 2px;
+	font-size: 80px;
+	text-align: center;
+	color: $dark-grey;
 }
 
 .fa-search-location {
-  margin-top: 2px;
-  font-size: 80px;
-  text-align: center;
-  color: $dark-grey;
+	margin-top: 2px;
+	font-size: 80px;
+	text-align: center;
+	color: $dark-grey;
 }
 
 .fa-credit-card {
-  margin-top: 2px;
-  font-size: 80px;
-  text-align: center;
-  color: $dark-grey;
+	margin-top: 2px;
+	font-size: 80px;
+	text-align: center;
+	color: $dark-grey;
 }
 
-
 .about-text {
-  font-size: 18px;
-  line-height: 2em;
-  font-style: italic;
-  padding: 20px;
+	font-size: 18px;
+	line-height: 2em;
+	font-style: italic;
+	padding: 20px;
 }
 
 .about-cards {
-  display: flex;
-  justify-content: space-evenly;
+	display: flex;
+	justify-content: space-evenly;
 }
 
 .about-card {
-  align-items: center;
-  justify-content: center;
-  h5 {
-    margin-top: 20px;
-    text-align: center;
-  }
-  p {
-    text-align: center;
-    font-size: 16px;
-    color: black;
-    opacity: 0.6;
-  }
+	align-items: center;
+	justify-content: center;
+	h5 {
+		margin-top: 20px;
+		text-align: center;
+	}
+	p {
+		text-align: center;
+		font-size: 16px;
+		color: black;
+		opacity: 0.6;
+	}
 }
 
 .about-avatar {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	object-fit: cover;
 }
