@@ -51,6 +51,9 @@ class OffersController < ApplicationController
     end
   end
 
+  def show
+    @offer = Offer.find(params[:id])
+  end
   # def accept
   #   @offer = Offer.find(params)
   # end
