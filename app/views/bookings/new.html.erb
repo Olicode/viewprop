@@ -1,11 +1,13 @@
-<div class="container">
-<h1>Make a booking</h1>
-  <div class="form-offer">
+<div class="container booking">
+  <h1>Make a booking for <span><%= @listing.title %></span></h1>
+  <div class="form-offer mt-3">
     <%= simple_form_for [@listing, @booking] do |f| %>
-    <%= f.input :date %>
-    <%= f.input :start_time %>
-    <%= f.input :end_time %>
-    <%= f.button :submit %>
+    <%= f.input :date, html5: true %>
+    <%= f.input :start_time, html5: true %>
+    <%= f.input :end_time, html5: true %>
+    <div class="d-flex align-items-center mt-4">
+    <%= f.button :submit, class:"btn btn-info" %>
     <% end %>
+    <%= link_to 'Back', listing_path(@listing), class:"ml-3 btn btn-secondary" %>
   </div>
 </div>
