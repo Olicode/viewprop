@@ -113,9 +113,13 @@
                   <p class="mb-0"><%= link_to "Add a new listing", new_listing_path %></p>
                 </div>
                 <div class="listing-cards mt-3">
-                  <section>
-                  <%= render 'shared/card', listings: @my_listings %>
-                   </section>
+                  <section class="mb-3">
+                    <div class="main-container d-flex">
+                      <div class="row">
+                        <%= render 'shared/card', listings: @my_listings %>
+                      </div>
+                    </div>
+                  </section>
                 </div>
               </div>
             </div>
