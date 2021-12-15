@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :bookings, only: %i[new create]
   end
   resources :offers, only: %i[edit update]
-  resources :bookings, only: %i[update delete]
+  resources :bookings, only: %i[show update delete]
 
   resources :conversations, only: %i[index show] do
     resources :messages, only: :create

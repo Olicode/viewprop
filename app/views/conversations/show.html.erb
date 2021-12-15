@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container chat">
   <h1>Chat with <%= @conversation.other_user(current_user).first_name %></h1>
   <div id="messages" data-conversation-id="<%= @conversation.id %>">
     <% @conversation.messages.each do |message| %>
@@ -12,8 +12,12 @@
     <% end %>
   </div>
 
-  <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
+
+    <%= simple_form_for [ @conversation, @message ], remote: true do |f| %>
     <%= f.input :content, label: false %>
-    <%= f.submit %>
-  <% end %>
+    <div class="d-flex align-items-center">
+    <%= f.button :submit, class:"btn btn-info" %>
+    <% end %>
+    <%= link_to 'Back', listing_path(@conversation), class:"ml-3 btn btn-secondary" %>
+  </div>
 </div>
