@@ -8,48 +8,52 @@
 
   <div class="main-container d-flex">
     <div class="listings-wrapper">
-      <% @listings.each do |listing| %>
-        <div class="">
-          <%= link_to listing_path(listing), class: "card-link-wrapper" do %>
-            <div class="card mb-3 mr-2" style="height: 320px">
-              <% if listing.photos.attached?%>
-                <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path listing.photos.first.key, crop: :fill %>')">
-                  <% if listing.instant_booking %>
-                    <p class="badge-instant-viewing">INSTANT VIEWING</p>
-                  <%# else %>
-                    <%# <p class="badge-instant-viewing">VIEWING UPON REQUEST</p> %>
-                  <% end %>
-                </div>
-              <% else %>
-                <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg')">
-                  <% if listing.instant_booking %>
-                    <p class="badge-instant-viewing">INSTANT VIEWING</p>
-                  <%# else %>
-                    <%# <p class="badge-viewing-upon-request">VIEWING UPON REQUEST</p> %>
-                  <% end %>
-                </div>
-              <% end %>
-              <div class="card-body p-3">
-                <h4><strong><i class="fas fa-pound-sign"></i> <%= listing.price %></strong></h4>
-                  <div class="d-flex"><p><%= listing.title.truncate(40) %></p></div>
-                <div class="bedroom-bathroom d-flex">
-                  <i class="fas fa-bed mr-1 mt-1"></i>
-                    <% if listing.bedroom.nil? %>
-                      <p class="mr-3"> N/A</p>
-                    <% else %>
-                      <p class="mr-3"> <%= listing.bedroom %></p>
+      <% if @listings = [] %>
+        <p>There are no results for your search.</p>
+      <% else %>
+        <% @listings.each do |listing| %>
+          <div class="">
+            <%= link_to listing_path(listing), class: "card-link-wrapper" do %>
+              <div class="card mb-3 mr-2" style="height: 320px">
+                <% if listing.photos.attached?%>
+                  <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path listing.photos.first.key, crop: :fill %>')">
+                    <% if listing.instant_booking %>
+                      <p class="badge-instant-viewing">INSTANT VIEWING</p>
+                    <%# else %>
+                      <%# <p class="badge-instant-viewing">VIEWING UPON REQUEST</p> %>
                     <% end %>
-                  <i class="fas fa-shower mr-1 mt-1" ></i>
-                    <% if listing.bathroom.nil? %>
-                      <p>N/A</p>
-                    <% else %>
-                      <p><%= listing.bathroom %></p>
+                  </div>
+                <% else %>
+                  <div class="card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg')">
+                    <% if listing.instant_booking %>
+                      <p class="badge-instant-viewing">INSTANT VIEWING</p>
+                    <%# else %>
+                      <%# <p class="badge-viewing-upon-request">VIEWING UPON REQUEST</p> %>
                     <% end %>
+                  </div>
+                <% end %>
+                <div class="card-body p-3">
+                  <h4><strong><i class="fas fa-pound-sign"></i> <%= listing.price %></strong></h4>
+                    <div class="d-flex"><p><%= listing.title.truncate(40) %></p></div>
+                  <div class="bedroom-bathroom d-flex">
+                    <i class="fas fa-bed mr-1 mt-1"></i>
+                      <% if listing.bedroom.nil? %>
+                        <p class="mr-3"> N/A</p>
+                      <% else %>
+                        <p class="mr-3"> <%= listing.bedroom %></p>
+                      <% end %>
+                    <i class="fas fa-shower mr-1 mt-1" ></i>
+                      <% if listing.bathroom.nil? %>
+                        <p>N/A</p>
+                      <% else %>
+                        <p><%= listing.bathroom %></p>
+                      <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div id="map"

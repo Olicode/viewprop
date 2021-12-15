@@ -1,0 +1,23 @@
+.inbox {
+	width: 60%;
+	margin-top: 50px;
+	h1 {
+		color: $dark;
+		margin-bottom: 24px;
+	}
+}
+
+.chat-text {
+	i {
+		color: $grey;
+	}
+	a {
+		color: $dark;
+	}
+}
+
+.conversation-card {
+	padding: 20px;
+	margin: 10px 0px;
+	border-radius: 8px;
+}
