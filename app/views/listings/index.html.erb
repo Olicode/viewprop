@@ -8,7 +8,7 @@
 
   <div class="main-container d-flex">
     <div class="listings-wrapper">
-      <% if @listings = [] %>
+      <% if @listings == [] %>
         <p>There are no results for your search.</p>
       <% else %>
         <% @listings.each do |listing| %>
