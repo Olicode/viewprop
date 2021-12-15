@@ -47,31 +47,38 @@
   <div class="tab-pane fade" id="nav-security" role="tabpanel" aria-labelledby="nav-security-tab">
     <div class="row">
       <div class="col-lg-4">
-        <div class="left-security bg-white p-3" style="height:500px;">
+        <div class="left-security">
           <h2 class="text-center">Basic Package</h2>
-          <p class="text-justify p-1">The basic package includes the ability for you to have instant-viewings with your own security system. Viewprop verifies the visitors coming into your property but will not be liable for any damages done.</p>
+          <p class="text-justify p-1">The basic package includes the ability for you to have instant-viewings with your own security system. </p>
           <ul class="p-4">
-            <li>Arrange your own viewings</li>
+            <li><i class="fas fa-plus"></i> Arrange your own viewings</li>
+            <li><i class="fas fa-plus"></i> Verified Visitors</li>
+            <li><i class="fas fa-plus"></i> Geolocation available for viewers</li>
+            <li><i class="fas fa-plus"></i> Host open-houses where you can have multiple visitors at a time</li>
           </ul>
         </div>
       </div>
       <div class="col-lg-8">
-        <div class="right-security bg-white p-3" style="height:500px;">
+        <div class="right-security">
           <h2 class="text-center">Security Package</h2>
           <p class="text-justify">Allow viewprop to guarantee your homes safety during viewings by using the security package we provide. Get a kit consisting of a security camera that you can access through the application and a padlock that will allow visitors to enter the property with a secret key we auto-generate for you in every bookings</p>
           <ul class="p-4">
-            <li>Get a FREE* Security Kit to make sure your viewings are safe.</li>
-            <li>Get all-access to instant-bookings and be able to host viewings anywhere in the world!</li>
-            <li>Get an auto-generated secret key for every visitor</li>
-            <li>We ensure your privacy and safety</li>
+            <li><i class="fas fa-plus"></i> Get a FREE* Security Kit to make sure your viewings are safe.</li>
+            <li><i class="fas fa-plus"></i> Get all-access to instant-bookings and be able to host viewings anywhere in the world!</li>
+            <li><i class="fas fa-plus"></i> Get an auto-generated secret key for every visitor</li>
+            <li><i class="fas fa-plus"></i> We ensure your privacy and safety</li>
           </ul>
-          <%= f.input :security_package %>
+          <%# <p>By clicking this box, you agree to the terms and agreements of the security package. A deposit of 500pounds will be taken from your account and you will be sent a free security package that you will have to return once you are done using our services</p> %>
+          <%= f.input :security_package, class: "security-input" %>
           <p> *When box is not checked, listing will default to basic package </p>
         </div>
       </div>
     </div>
   </div>
   <div class="tab-pane fade" id="nav-payment" role="tabpanel" aria-labelledby="nav-payment-tab">
+    <br>
+    <p>By clicking this button, you agree to our <strong>Terms and Conditions</strong> and agree to sign your property exclusive with <strong>Viewprop, co.<strong></p>
+    <p>Please make sure that all the information is correct.</p>
     <%= f.submit "Submit Listing", class: "btn btn-info" %>
   </div>
 </div>
