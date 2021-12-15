@@ -1,6 +1,7 @@
-<h1>History</h1>
-<div class="container">
-  <div class="listings-sold-container">
+<div class="container mt-5">
+  <h1>History</h1>
+  <hr>
+  <div class="listings-sold-container mt-5">
     <h2>Listings You Sold</h2>
     <% if @accepted_seller_offers.empty? && @rejected_seller_offers.empty? %>
       <p>You have not sold any listings yet.</p>
@@ -30,4 +31,3 @@
       <% end %>
   </div>
 </div>
-
