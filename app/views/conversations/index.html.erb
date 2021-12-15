@@ -1,12 +1,16 @@
-<div class="container">
-  <h1>All Chats</h1>
-
-
-  <% @conversations.each do |conversation| %>
-    <% next if conversation.messages.empty? %>
-    <div class="conversation-card bg-white p-2 m-3" style="height:100px;">
-      <p><%= link_to conversation.other_user(current_user).first_name, conversation_path(conversation) %></p>
-      <p><%= conversation.messages.last.content %></p>
-    </div>
-  <% end %>
+<div class="container inbox">
+  <div>
+    <h1>All Chats</h1>
+    <% @conversations.each do |conversation| %>
+      <% next if conversation.messages.empty? %>
+      <div class="conversation-card bg-white" style="height:100px;">
+        <div class="d-flex chat-text">
+          <p class="mr-3"><strong><%= link_to conversation.other_user(current_user).first_name, conversation_path(conversation) %>
+          <% conversation.other_user(current_user).last_name %></strong></p>
+          <i><%= conversation.messages.last.updated_at.strftime("%a %b %e at %l:%M%p") %></i>
+        </div>
+        <p class="chat-content"><%= conversation.messages.last.content %></p>
+      </div>
+    <% end %>
+  </div>
 </div>
