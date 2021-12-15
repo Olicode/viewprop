@@ -6,13 +6,21 @@
   <h3><%= @booking.date %></h3>
   <h4><%= @booking.start_time.strftime('%I:%M:%S %p') %> - <%= @booking.end_time.strftime('%I:%M:%S %p') %></h4>
   <p>** Throughout your visit, you consent to be recorded and monitored through our security system which will have saved footage for up to 24 hours. This is to ensure the safety of the property as well as our visitors during the viewings.</p>
-  <p>The keycode to access the property will appear when the booking time starts.</p>
-  <p>Here is an audio to help you navigate your way through the property: </p>
+  <p>The keycode to access the property will appear when the booking time starts. An audio will also be available for you to help navigate through the property.</p>
+
   <%# Input the audio here Oli :) %>
-  <br>
-  <br>
-  <br>
-  <% if @booking.status == "Accepted" && @booking.start_time <= Time.now %>
+   <%# audio%>
+
+  <% if @booking.status == "Accepted" && @booking.start_time <= Time.now && @booking.date == Date.today %>
+    <div class="audio">
+    <% if @booking.listing.audio.attached? %>
+      <p>Here is an audio to help you navigate your way through the property: </p>
+      <%= cl_video_tag @booking.listing.audio.key, controls: true %>
+      <% end %>
+    </div>
+    <br>
+    <br>
+    <br>
     <p> This your auto-generated personal keycode to access the property. </p>
     <p class="text-danger">*DO NOT SHARE THIS CODE WITH ANYONE ELSE*</p>
     <h2><%= @booking.keycode %></p>
