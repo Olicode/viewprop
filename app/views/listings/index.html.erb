@@ -3,6 +3,8 @@
   <section class="mb-3">
     <%= render "search_form" %>
   </section>
+  <%= link_to "Add your own listing now!", new_listing_path %>
+  <br>
 
   <div class="main-container d-flex">
     <div class="listings-wrapper">
@@ -58,8 +60,5 @@
     </div>
   </div>
 
-    <%= link_to "New listing", new_listing_path %>
-    <hr>
-    <%= link_to 'Back', root_path %>
 
 </div>
