@@ -98,3 +98,30 @@
   font-style: italic;
   padding: 20px;
 }
+
+.about-cards {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.about-card {
+  align-items: center;
+  justify-content: center;
+  h5 {
+    margin-top: 20px;
+    text-align: center;
+  }
+  p {
+    text-align: center;
+    font-size: 16px;
+    color: black;
+    opacity: 0.6;
+  }
+}
+
+.about-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
