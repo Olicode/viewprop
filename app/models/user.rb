@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :listings, dependent: :destroy
   has_many :offers
-  has_many :bookings, through: :listings
+  has_many :bookings #, through: :listings
   has_one_attached :avatar
   has_many :notifications
 

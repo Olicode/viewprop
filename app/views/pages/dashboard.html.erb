@@ -89,7 +89,7 @@
                       <% else %>
                         <% @accepted_seller_offers.each do |offer| %>
                           <div class="offer-booking-card bg-light">
-                            <p>Accepted | Offer for <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                            <p>Accepted | Offer for <strong><%= link_to offer.listing.title, offer_path(offer) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                           </div>
                         <% end %>
                         <% @rejected_seller_offers.each do |offer| %>
@@ -198,12 +198,6 @@
                             <div class="offer-card">
                               <p><%= link_to "Booking for #{booking.listing.title}", booking_path(booking) %><p>
                               <p><%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
-                              <%= link_to booking_path(booking, { booking: { status: "Accepted" } }), method: :patch do %>
-                                <i class="fas fa-check"></i>
-                              <% end %>
-                              <%= link_to booking_path(booking, { booking: { status: "Rejected" } }), method: :patch do %>
-                                <i class="fas fa-times"></i>
-                              <% end %>
                             </div>
                           <% end %>
                         <% end %>
@@ -222,7 +216,7 @@
                       <% else %>
                         <% @accepted_buyer_offers.each do |offer| %>
                           <div class="offer-booking-card bg-light">
-                            <p>Accepted | Offer for <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                            <p>Accepted | Offer for <strong><%= link_to offer.listing.title, offer_path(offer) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                           </div>
                         <% end %>
                         <% @rejected_buyer_offers.each do |offer| %>
