@@ -1,3 +1,7 @@
+.navbar-logo {
+
+}
+
 .navbar {
 	display: flex;
 	justify-content: space-between;
@@ -5,6 +9,10 @@
 	background: $dark-grey;
 	.navbar-brand {
 		font-size: 2rem;
+    img {
+    height: 25%;
+    width: 25%;
+    }
 	}
 	a {
 		color: $light-grey;
