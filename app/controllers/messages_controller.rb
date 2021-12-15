@@ -9,7 +9,8 @@ class MessagesController < ApplicationController
         @conversation,
         render_to_string(partial: "message", locals: { message: @message })
       )
-      # Notification.create(user: current_user, content: "You have a new message from #{@current_user.first_name}", seller: true)
+      Notification.create(user: @conversation.other_user(current_user), content: "You have a new message from #{@current_user.first_name}", seller: true)
+      Notification.create(user: @conversation.other_user(current_user), content: "You have a new message from #{@current_user.first_name}", seller: false)
       redirect_to conversation_path(@conversation, anchor: "message-#{@message.id}")
     else
       render "conversations/show"
