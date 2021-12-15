@@ -1,13 +1,19 @@
+.navbar-logo {
+}
+
 .navbar {
 	display: flex;
 	justify-content: space-between;
 	height: 65px;
 	background: $dark-grey;
-	.navbar-brand {
-		font-size: 2rem;
-	}
 	a {
 		color: $light-grey;
+	}
+}
+
+.navbar-brand {
+	img {
+		width: 175px;
 	}
 }
 

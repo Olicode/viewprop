@@ -9,11 +9,22 @@ class BookingsController < ApplicationController
     @listing = Listing.find(params[:listing_id])
     @booking.listing = @listing
     @booking.user = current_user
+    @booking.keycode = keycode
     if @booking.save
       Notification.create(user: @listing.user, booking: @booking, content: "You have a new booking for #{@listing.title}", seller: true)
       redirect_to dashboard_path
     else
       render 'new'
+    end
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
+    @listing = @booking.listing
+    @conversation = current_user.conversation_with(@listing.user)
+    if !@conversation
+      @conversation = Conversation.new(sender_id: current_user.id, receiver_id: @listing.user.id)
+      @conversation.save!
     end
   end
 
@@ -40,5 +51,15 @@ class BookingsController < ApplicationController
 
   def status_params
     params.require(:booking).permit(:status)
+  end
+
+  def keycode
+    first_number = rand(0..9)
+    second_number = rand(0..9)
+    third_letter = %i[a b c d e f g h i j k l m n o p q r s t u v w x y z].sample
+    fourth_letter = %i[A B C D E F G H I J K L M N O P Q R S T U V W X Y Z].sample
+    fifth_number = rand(0..9)
+    sixth_letter = %i[a b c d e f g h i j k l m n o p q r s t u v w x y z].sample
+    return "#{first_number}#{second_number}#{third_letter}#{fourth_letter}#{fifth_number}#{sixth_letter}"
   end
 end

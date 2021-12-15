@@ -18,3 +18,47 @@ span.page-link {
 	color: $light-grey;
 	border: 1px solid $grey;
 }
+
+.left-security {
+  margin-top: 10px;
+  height: 520px;
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px $light-grey;
+  h2 {
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+  ul {
+    list-style: none;
+  }
+  li {
+    line-height: 30px;
+  }
+}
+
+.right-security {
+  margin-top: 10px;
+  height: 520px;
+  background-color: $light-grey;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px black;
+  h2 {
+    margin-bottom: 10px;
+    text-decoration: underline;
+  }
+  ul {
+    list-style: none;
+  }
+  li {
+    line-height: 30px;
+  }
+}
+
+.form-check-label {
+  color: black !important;
+  text-decoration: none;
+  font-weight: bolder;
+}

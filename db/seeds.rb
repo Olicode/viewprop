@@ -24,7 +24,7 @@ puts "Finished creating users"
 
 puts "Creating listings..."
 
-LOCATION = ["Ubud", "Canggu", "Uluwatu", "Semiyak", "Denpasssar", "Jembrana", "Singaraja"]
+LOCATION = ["Ubud", "Canggu", "Uluwatu", "Semiyak", "Denpasar", "Jembrana", "Singaraja"]
 VERB = ["great", "nice", "secluded", "quiet", "green", "marvelous"]
 SPOT = ["area", "location"]
 PHRASE = ["huge opportunity!", "development opportunity!", "with amazing ocean view!", "luxury Penthouse!", "beautifull Villa"]
@@ -43,7 +43,7 @@ BATHROOM = [1, 2, 3, 4]
   t = PHRASE.sample
   Listing.create({
                     title: "#{x} #{y} #{z}, #{t}",
-                    address: "#{LOCATION.sample}, Bali",
+                    address: "#{x}, Bali",
                     description: "#{BEDROOM.sample} BR luxury villa",
                     price: PRICE.sample,
                     negotiable: NEGOTIABLE.sample,
@@ -59,7 +59,7 @@ puts "Finished creating listings!"
 
 puts "Create bookings"
 
-Booking.create({
+Booking.create!({
                   date: "12-04-2021",
                   start_time: "9:30",
                   end_time: "10:00",
@@ -67,29 +67,13 @@ Booking.create({
                   listing: Listing.third,
                   user: User.first
                 })
-Booking.create({
+Booking.create!({
                   date: "12-12-2021",
                   start_time: "10:30",
                   end_time: "11:00",
                   status: "Pending",
                   listing: Listing.first,
                   user: User.second
-                })
-Booking.create({
-                  date: "14-07-2021",
-                  start_time: "7:30",
-                  end_time: "08:00",
-                  status: "Rejected",
-                  listing: Listing.second,
-                  user: User.third
-                })
-Booking.create({
-                  date: "12-12-2021",
-                  start_time: "13:30",
-                  end_time: "14:00",
-                  status: "Accepted",
-                  listing: Listing.third,
-                  user: User.fourth
                 })
 
 puts "Finish creating Bookings"
@@ -109,20 +93,6 @@ Offer.create!({
                 seller_confirmed: false,
                 listing: Listing.second,
                 user: User.first
-              })
-Offer.create!({
-                final_price: 384_000,
-                buyer_confirmed: true,
-                seller_confirmed: true,
-                listing: Listing.third,
-                user: User.second
-              })
-Offer.create!({
-                final_price: 284_000,
-                buyer_confirmed: false,
-                seller_confirmed: true,
-                listing: Listing.first,
-                user: User.third
               })
 
 puts "Finished all offers"

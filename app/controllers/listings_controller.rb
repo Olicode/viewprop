@@ -33,8 +33,12 @@ class ListingsController < ApplicationController
     end
 
     if params[:search] && params[:search][:negotiable].present?
-      negotiable = params[:search][:negotiable] == "1"
-      @listings = @listings.search_by_negotiable(negotiable)
+      if params[:search][:negotiable] == "0"
+        @listings = @listings.search_by_negotiable(false)
+      else
+        # negotiable = params[:search][:negotiable] == "1"
+        @listings = @listings.search_by_negotiable(true)
+      end
     end
 
     if params[:search] && params[:search][:size].present?
