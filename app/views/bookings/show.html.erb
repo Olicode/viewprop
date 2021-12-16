@@ -3,7 +3,7 @@
     <h2># <%= @booking.id %> </h2>
     <span><p class="ml-3">Status: <%= @booking.status %></p></span>
   </div>
-  <h1>Booking for <strong><%= @booking.listing.title %></strong></h1>
+  <h1>Booking for <strong class="links2"><%= link_to @booking.listing.title.split(", ")[0], listing_path(@booking.listing) %></strong> <%= @booking.listing.title.split(", ")[1] %></h1>
   <p class="links2"><%= link_to "Send a message to #{@booking.listing.user.first_name}", conversation_path(@conversation) %></p>
   <h4><%= @booking.date.strftime('%A, %b %d') %></h4>
   <h5><%= @booking.start_time.strftime('%I:%M:%S %p') %> - <%= @booking.end_time.strftime('%I:%M:%S %p') %></h5>
