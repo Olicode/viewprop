@@ -8,10 +8,6 @@
 
   <p>** Throughout your visit, you consent to be recorded and monitored through our security system which will have saved footage for up to 24 hours. This is to ensure the safety of the property as well as our visitors during the viewings.</p>
   <p>The keycode to access the property will appear when the booking time starts. An audio will also be available for you to help navigate through the property.</p>
-
-  <%# Input the audio here Oli :) %>
-   <%# audio%>
-
   <% if @booking.status == "Accepted" && @booking.start_time <= Time.now && @booking.date == Date.today %>
     <div class="audio">
     <% if @booking.listing.audio.attached? %>
