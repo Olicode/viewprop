@@ -17,12 +17,9 @@
     <% if @booking.listing.audio.attached? %>
       <p>Here is an audio to help you navigate your way through the property: </p>
       <%= cl_video_tag @booking.listing.audio.key, controls: true %>
-      <% end %>hero
+      <% end %>
     </div>
-    <br>
-    <br>
-    <br>
-    <p> This your auto-generated personal keycode to access the property. </p>
+    <p> This is your auto-generated personal keycode to access the property. </p>
     <p class="text-danger">*DO NOT SHARE THIS CODE WITH ANYONE ELSE*</p>
     <h2><%= @booking.keycode %></p>
   <% end %>
