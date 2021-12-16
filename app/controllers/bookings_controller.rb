@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
     @booking.keycode = keycode
     if @booking.save
       Notification.create(user: @listing.user, booking: @booking, content: "You have a new booking for #{@listing.title}", seller: true)
+      Notification.create(user: current_user, booking: @booking, content: "You have just made a booking for #{@listing.title.truncate(10)}. You will receive an encrypted keycode through booking details.", seller: false)
       redirect_to dashboard_path
     else
       render 'new'
