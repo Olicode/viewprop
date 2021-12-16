@@ -1,17 +1,23 @@
 <div class="p-5">
-  <h1>Welcome, <%= current_user.first_name.capitalize %></h1>
+  <h1 class="text-dark">Welcome, <span class="italic"><%= current_user.first_name.capitalize %></span></h1>
   <ul class="nav nav-pills" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="seller-tab" data-toggle="tab" href="#seller" role="tab" aria-controls="seller" aria-selected="true">Manage Your Listings</a>
+    <li class="nav-item dashboard-button" role="presentation">
+      <a class="nav-link active" id="seller-tab" data-toggle="tab" href="#seller" role="tab" aria-controls="seller" aria-selected="true">Your Listings</a>
     </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="buyer-tab" data-toggle="tab" href="#buyer" role="tab" aria-controls="buyer" aria-selected="false">Manage Your Purchases</a>
+    <li class="nav-item dashboard-button" role="presentation">
+      <a class="nav-link" id="buyer-tab" data-toggle="tab" href="#buyer" role="tab" aria-controls="buyer" aria-selected="false">Your Purchases</a>
     </li>
   </ul>
   <div class="tab-content mt-5" id="myTabContent">
     <div class="tab-pane fade show active" id="seller" role="tabpanel" aria-labelledby="seller-tab">
       <% if current_user.seller == false %>
-        <p><%= link_to "Add your first listing", new_listing_path %>
+        <div class="ml-4">
+          <h5>You are currently not a seller. Add your first property and get to selling with Viewprop, co.!</h5>
+          <br>
+          <h2 class="links"><%= link_to "Add your first listing!", new_listing_path %></h2>
+          <br>
+          <p>Please navigate to the next tab to manage your purchases and bookings.</p>
+        </div>
       <% else %>
         <div class="row">
           <div class="col-lg-9">
@@ -27,14 +33,14 @@
                         <% else %>
                           <% @waiting_seller_offers.each do |offer| %>
                             <div class="offer-card p-3">
-                              <p class="mb-0"> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
+                              <p class="mb-0"> <i class="fas fa-home"></i> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
                               <p class="mb-0"> <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                               <p class="mb-1 response"> --- Waiting for response --- </p>
                             </div>
                           <% end %>
                           <% @pending_seller_offers.each do |offer| %>
                             <div class="offer-card p-3">
-                              <p class="mb-0"> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
+                              <p class="mb-0"> <i class="fas fa-home"></i> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
                               <p class="mb-0"> <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                               <% if offer.listing.negotiable %>
                                 <%= link_to edit_offer_path(offer) do %>
@@ -62,8 +68,8 @@
                         <% else %>
                           <% @pending_seller_bookings.each do |booking|%>
                             <div class="offer-card">
-                              <p><%= link_to "Booking for #{booking.listing.title}", booking_path(booking) %><p>
-                              <p><%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
+                              <p><i class="fas fa-door-open"></i> <%= link_to "Booking for #{booking.listing.title}", booking_path(booking), class: "links" %><p>
+                              <p><i class="far fa-calendar-check"></i> <%= booking.date %> | <i class="far fa-clock"></i> <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
                               <%= link_to booking_path(booking, { booking: { status: "Accepted" } }), method: :patch do %>
                                 <i class="fas fa-check"></i>
                               <% end %>
@@ -81,26 +87,28 @@
                 <div class="col-lg-8">
                   <div class="booking-notification-container">
                     <h3 class="dashboard-title">Offers & Bookings</h3>
-                    <p><%= link_to "See your offer history", history_path %></p>
+                    <p class="links"><%= link_to "See your offer history", history_path %></p>
 
                     <div class="booking-notification-cards p-3">
                       <% if @accepted_seller_offers.empty? && @rejected_seller_offers.empty? && @current_seller_bookings.empty? %>
-                        <p>You have no offers or bookings yet</p>
+                        <p>You have no offers or bookings yet.</p>
                       <% else %>
                         <% @accepted_seller_offers.each do |offer| %>
                           <div class="offer-booking-card bg-light">
-                            <p>Accepted | Offer for <strong><%= link_to offer.listing.title, offer_path(offer) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                            <p><span class="accepted"><strong>Accepted</strong></span> | <i class="fas fa-home"></i> Offer for <strong><%= link_to offer.listing.title, offer_path(offer), class: "links" %></strong> </p>
+                            <h5><i class="fas fa-pound-sign"></i> <%= offer.final_price %></h5>
                           </div>
                         <% end %>
                         <% @rejected_seller_offers.each do |offer| %>
                           <div class="offer-booking-card bg-light p-2">
-                            <p>Rejected | Offer for <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
-                          </div>
+                            <p><span class="rejected"><strong>Rejected</strong></span> | <i class="fas fa-home"></i> Offer for <strong><%= link_to offer.listing.title, offer_path(offer), class: "links" %></strong> </p>
+                            <h5><i class="fas fa-pound-sign"></i> <%= offer.final_price %></h5>                          </div>
                         <% end %>
                         <% @current_seller_bookings.each do |booking|%>
                           <div class="offer-booking-card">
-                            <p class="mb-0"><%= booking.status %> | Booking for <%= link_to booking.listing.title, booking_path(booking) %></p>
-                            <p><%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
+                            <p class="mb-0"><span class="<%= booking.status.downcase %>"><strong><%= booking.status %></strong></span> | <i class="fas fa-door-open"></i>  Booking for <%= link_to booking.listing.title.truncate(45), booking_path(booking), class: "links" %></p>
+                            <p><i class="far fa-calendar-check"></i> <%= booking.date %> </p>
+                            <p><i class="far fa-clock"></i> <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
                           </div>
                         <% end %>
                       <% end %>
@@ -111,8 +119,8 @@
               <div class="listing-viewing-container mt-5">
                 <div class="listing-viewing-title d-flex align-items-center">
                   <h3 class="dashboard-title mr-4">All your listings</h3>
-                  <p class="mr-3 mb-0"><%= link_to "Listings sold", history_path %></p>
-                  <p class="mb-0"><%= link_to "Add a new listing", new_listing_path %></p>
+                  <p class="mr-3 mb-0 links"><%= link_to "Listings sold", history_path %></p>
+                  <p class="mb-0 links"><%= link_to "Add a new listing", new_listing_path %></p>
                 </div>
                 <div class="listing-cards mt-3">
                   <section>
@@ -130,11 +138,11 @@
                 <h3 class="dashboard-title">Notifications</h3>
                 <div class="notification-cards">
                   <% if @seller_notifications.empty? %>
-                    <p class="p-3">You have no notifications</p>
+                    <p class="p-3">You have no notifications.</p>
                   <% else %>
                     <% @seller_notifications.each do |notification| %>
                       <div class="notification-card">
-                        <p><%= notification.content %></p>
+                        <p><i class="fas fa-bell"></i> <%= notification.content %></p>
                       </div>
                     <% end %>
                   <% end %>
@@ -160,7 +168,7 @@
                         <% else %>
                           <% @waiting_buyer_offers.each do |offer| %>
                             <div class="offer-card p-3">
-                              <p class="mb-0"> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
+                              <p class="mb-0"> <i class="fas fa-home"></i> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
                               <p class="mb-0"> <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                               <br>
                               <p class="mb-1 response"> --- Waiting for response --- </p>
@@ -168,7 +176,7 @@
                           <% end %>
                           <% @pending_buyer_offers.each do |offer| %>
                             <div class="offer-card p-3">
-                              <p class="mb-0"> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
+                              <p class="mb-0"> <i class="fas fa-home"></i> <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> </p>
                               <p class="mb-0"> <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
                               <% if offer.listing.negotiable %>
                                 <%= link_to edit_offer_path(offer) do %>
@@ -196,8 +204,9 @@
                         <% else %>
                           <% @pending_buyer_bookings.each do |booking|%>
                             <div class="offer-card">
-                              <p><%= link_to "Booking for #{booking.listing.title}", booking_path(booking) %><p>
-                              <p><%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
+                              <p><i class="fas fa-door-open"></i> <%= link_to "Booking for #{booking.listing.title}", booking_path(booking) %><p>
+                              <p><i class="far fa-calendar-check"></i> <%= booking.date %></p>
+                              <p><i class="far fa-clock"></i> <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
                             </div>
                           <% end %>
                         <% end %>
@@ -209,25 +218,27 @@
                 <div class="col-lg-8">
                   <div class="booking-notification-container">
                     <h3 class="dashboard-title">Offers & Bookings</h3>
-                    <p><%= link_to "See your offer history", history_path %></p>
+                    <p class="links"><%= link_to "See your offer history", history_path %></p>
                     <div class="booking-notification-cards p-3">
                       <% if @accepted_buyer_offers.empty? && @rejected_buyer_offers.empty? && @current_buyer_bookings.empty? %>
-                        <p>You have no offers or bookings yet</p>
+                        <p>You have no offers or bookings yet.</p>
                       <% else %>
                         <% @accepted_buyer_offers.each do |offer| %>
                           <div class="offer-booking-card bg-light">
-                            <p>Accepted | Offer for <strong><%= link_to offer.listing.title, offer_path(offer) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
+                            <p><span class="accepted"><strong>Accepted</strong></span> | <i class="fas fa-home"></i> Offer for <strong><%= link_to offer.listing.title, offer_path(offer), class: "links" %></strong> </p>
+                            <h5><i class="fas fa-pound-sign"></i> <%= offer.final_price %></h5>
                           </div>
                         <% end %>
                         <% @rejected_buyer_offers.each do |offer| %>
-                          <div class="offer-booking-card bg-light">
-                            <p>Rejected | Offer for <strong><%= link_to offer.listing.title, listing_path(offer.listing) %></strong> for <i class="fas fa-pound-sign"></i> <strong><%= offer.final_price %></strong><p>
-                          </div>
+                          <div class="offer-booking-card bg-light p-2">
+                            <p><span class="rejected"><strong>Rejected</strong></span> | <i class="fas fa-home"></i> Offer for <strong><%= link_to offer.listing.title, offer_path(offer), class: "links" %></strong> </p>
+                            <h5><i class="fas fa-pound-sign"></i> <%= offer.final_price %></h5>                          </div>
                         <% end %>
                         <% @current_buyer_bookings.each do |booking|%>
                           <div class="offer-booking-card">
-                            <p class="mb-0"><%= booking.status %> | Booking for <%= link_to booking.listing.title, booking_path(booking) %></p>
-                            <p><%= booking.date %> | <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
+                            <p class="mb-0"><span class="<%= booking.status.downcase %>"><strong><%= booking.status %></strong></span> | <i class="fas fa-door-open"></i>  Booking for <%= link_to booking.listing.title.truncate(45), booking_path(booking), class: "links" %></p>
+                            <p><i class="far fa-calendar-check"></i> <%= booking.date %> </p>
+                            <p><i class="far fa-clock"></i> <%= booking.start_time.strftime('%I:%M:%S %p') %> - <%= booking.end_time.strftime('%I:%M:%S %p') %></p>
                           </div>
                         <% end %>
                       <% end %>
@@ -241,7 +252,10 @@
                 </div>
                 <div class="listing-cards mt-3">
                   <% if @listings_searched == [] %>
-                    <p> <%= link_to "Search through our listings", listings_path %> </p>
+                    <div class="main-container">
+                      <p class="ml-4 mt-2">You have not looked at any available listings.</p>
+                      <p class="links ml-4"> <%= link_to "Search through our listings now!", listings_path %> </p>
+                    </div>
                   <% else %>
                     <section>
                       <div class="main-container d-flex">
@@ -259,11 +273,11 @@
                 <h3 class="dashboard-title">Notifications</h3>
                 <div class="notification-cards">
                   <% if @buyer_notifications.empty? %>
-                    <p class="p-3">You have no notifications</p>
+                    <p class="p-3">You have no notifications.</p>
                   <% else %>
                     <% @buyer_notifications.each do |notification| %>
                       <div class="notification-card">
-                        <p><%= notification.content %></p>
+                        <p><i class="fas fa-bell"></i> <%= notification.content %></p>
                       </div>
                     <% end %>
                   <% end %>
