@@ -1,15 +1,19 @@
 .offer {
-	width: 65%;
-	margin-top: 50px;
+	display: flex;
+	align-items: center;
 	color: $dark;
-	span {
-		color: rgb(97, 95, 95);
-	}
-	.integer {
-		color: $dark;
-	}
+	background-color: $light-grey;
+	height: 180px;
+	padding: 16px;
+	width: 90%;
+	margin-left: 0px;
+	border-radius: 8px;
 }
 
-#offer_final_price {
-	width: 50%;
+.offer_final_price {
+	width: 74%;
+}
+
+.offer_btn {
+	width: 250px;
 }

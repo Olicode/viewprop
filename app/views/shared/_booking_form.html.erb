@@ -1,0 +1,15 @@
+<p><a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseBooking" role="button" aria-expanded="false" aria-controls="collapseBooking">
+  Schedule a viewing
+</a></p>
+<div class="collapse" id="collapseBooking">
+  <div class="container booking">
+    <div class="form-booking ml-0">
+      <%= simple_form_for [@listing, Booking.new] do |f| %>
+      <%= f.input :date, html5: true %>
+      <%= f.input :start_time, html5: true %>
+      <%= f.input :end_time, html5: true %>
+      <%= f.button :submit, class:"btn btn-info" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,13 @@
 .booking {
-	width: 65%;
-	margin-top: 50px;
-	color: $dark;
-
-	span {
-		color: rgb(97, 95, 95);
-	}
-	.integer {
-		color: $dark;
-	}
+	background-color: $light-grey;
+	padding: 12px;
+	border-radius: 8px;
 }
 
-.form-offer {
-	width: 88%;
+label {
+	margin-left: 4px;
+}
+
+.booking_btn {
+	width: 260px;
 }

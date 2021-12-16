@@ -1,0 +1,17 @@
+<p><a class="btn btn-outline-dark" data-toggle="collapse" href="#collapseOffer" role="button" aria-expanded="false" aria-controls="collapseOffer">
+  Place an offer
+</a></p>
+<div class="collapse" id="collapseOffer">
+  <div class="container offer">
+    <div class="form-offer">
+      <%= simple_form_for [@listing, Offer.new] do |f| %>
+        <% if @listing.negotiable %>
+          <%= f.input :final_price, label: "Offer in Pounds", input_html: { value: @listing.price } %>
+        <% else %>
+          <%= f.input :final_price, label: "Offer in Pounds", input_html: { value: @listing.price }, readonly: true %>
+        <% end %>
+        <%= f.button :submit, class:"btn btn-info" %>
+        <% end %>
+    </div>
+  </div>
+</div>

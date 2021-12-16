@@ -3,14 +3,14 @@
   <div class="form-offer">
     <%= simple_form_for [@listing, @offer] do |f| %>
     <% if @listing.negotiable %>
-      <%= f.input :final_price, input_html: { value: @listing.price } %>
+      <%= f.input :final_price, label: "Offer in Pounds", input_html: { value: @listing.price } %>
     <% else %>
-      <%= f.input :final_price, input_html: { value: @listing.price }, readonly: true %>
+      <%= f.input :final_price, label: "Offer in Pounds", input_html: { value: @listing.price }, readonly: true %>
     <% end %>
-    <div class="d-flex">
-      <%= f.button :submit, class:"btn btn-info" %>
-      <% end %>
-      <%= link_to 'Back', listing_path(@listing), class:"ml-3 btn btn-secondary" %>
+    <div class="d-flex justify-content-between">
+      <%= link_to 'Back', listing_path(@listing), class:"btn bg-dark text-white" %>
+      <%= f.button :submit, class:"btn btn-secondary" %>
     </div>
+      <% end %>
   </div>
 </div>
