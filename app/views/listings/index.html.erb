@@ -3,10 +3,9 @@
   <section class="mb-3">
     <%= render "search_form" %>
   </section>
-  <%= link_to "Add your own listing now!", new_listing_path %>
-  <br>
+  <span class="links"><%= link_to "Add your own listing now!", new_listing_path %></span>
 
-  <div class="main-container d-flex">
+  <div class="main-container d-flex mt-2">
     <div class="listings-wrapper">
       <% if @listings == [] %>
         <p>There are no results for your search.</p>
@@ -36,13 +35,13 @@
                   <h4><strong><i class="fas fa-pound-sign"></i> <%= listing.price %></strong></h4>
                     <div class="d-flex"><p><%= listing.title.truncate(40) %></p></div>
                   <div class="bedroom-bathroom d-flex">
-                    <i class="fas fa-bed mr-1 mt-1"></i>
+                    <i class="fas fa-bed mr-1"></i>
                       <% if listing.bedroom.nil? %>
                         <p class="mr-3"> N/A</p>
                       <% else %>
                         <p class="mr-3"> <%= listing.bedroom %></p>
                       <% end %>
-                    <i class="fas fa-shower mr-1 mt-1" ></i>
+                    <i class="fas fa-shower mr-1" ></i>
                       <% if listing.bathroom.nil? %>
                         <p>N/A</p>
                       <% else %>

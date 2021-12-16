@@ -1,10 +1,11 @@
 <div class="container show-container mt-4">
   <h2># <%= @booking.id %> </h2>
-  <h1>Booking for <strong><%= @booking.listing.title %></strong></h1>
+  <h1>Booking for <strong class="links2"><%= link_to @booking.listing.title.split(", ")[0], listing_path(@booking.listing) %></strong> <%= @booking.listing.title.split(", ")[1] %></h1>
   <p>Status: <%= @booking.status %></p>
   <p><%= link_to "Send a message to #{@booking.listing.user.first_name}", conversation_path(@conversation), class:"btn btn-outline-dark" %></p>
-  <h3><%= @booking.date %></h3>
-  <h4><%= @booking.start_time.strftime('%I:%M:%S %p') %> - <%= @booking.end_time.strftime('%I:%M:%S %p') %></h4>
+  <h4><%= @booking.date.strftime('%A, %b %d') %></h4>
+  <h5><%= @booking.start_time.strftime('%I:%M:%S %p') %> - <%= @booking.end_time.strftime('%I:%M:%S %p') %></h5>
+
   <p>** Throughout your visit, you consent to be recorded and monitored through our security system which will have saved footage for up to 24 hours. This is to ensure the safety of the property as well as our visitors during the viewings.</p>
   <p>The keycode to access the property will appear when the booking time starts. An audio will also be available for you to help navigate through the property.</p>
 

@@ -26,7 +26,9 @@
                 <div class="col-lg-4">
                   <div class="offer-booking-container" >
                     <div class="offer-container">
+                    <div class="listing-viewing-title d-flex align-items-center">
                       <h3 class="dashboard-title">Offer Requests</h3>
+                      </div>
                       <div class="offer-cards card">
                         <% if @pending_seller_offers.empty? && @waiting_seller_offers.empty? %>
                           <p>You have no pending offers.</p>
@@ -89,9 +91,10 @@
 
                 <div class="col-lg-8">
                   <div class="booking-notification-container">
-                    <h3 class="dashboard-title">Offers & Bookings</h3>
-                    <p class="links"><%= link_to "See your offer history", history_path %></p>
-
+                    <div class="listing-viewing-title d-flex align-items-center">
+                      <h3 class="dashboard-title mr-4">Offers & Bookings</h3>
+                      <p class="links mb-0"><%= link_to "See your offer history", history_path %></p>
+                    </div>
                     <div class="booking-notification-cards p-3">
                       <% if @accepted_seller_offers.empty? && @rejected_seller_offers.empty? && @current_seller_bookings.empty? %>
                         <p>You have no offers or bookings yet.</p>
@@ -220,8 +223,10 @@
 
                 <div class="col-lg-8">
                   <div class="booking-notification-container">
-                    <h3 class="dashboard-title">Offers & Bookings</h3>
-                    <p class="links"><%= link_to "See your offer history", history_path %></p>
+                    <div class="listing-viewing-title align-items-center d-flex">
+                      <h3 class="dashboard-title mr-4">Offers & Bookings</h3>
+                      <p class="links mb-0"><%= link_to "See your offer history", history_path %></p>
+                    </div>
                     <div class="booking-notification-cards p-3">
                       <% if @accepted_buyer_offers.empty? && @rejected_buyer_offers.empty? && @current_buyer_bookings.empty? %>
                         <p>You have no offers or bookings yet.</p>

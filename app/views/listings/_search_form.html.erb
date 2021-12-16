@@ -1,6 +1,10 @@
 <%= simple_form_for :search, url: listings_path, method: :get do |f| %>
   <div class="d-flex search-form">
-    <div><%= f.input :address, input_html: { value: params[:search].try(:[],:address) } %></div>
+    <% if params[:location].present? %>
+        <div><%= f.input :address, input_html: { value: params[:location].split(", ")[0] } %></div>
+    <% else %>
+      <div><%= f.input :address, input_html: { value: params[:search].try(:[],:address) } %></div>
+    <% end %>
     <% if params[:search].present? && params[:search][:price].present? %>
       <div><%= f.input :price, collection: ["< 70.000", "70.000 - 150.000", "150.000 - 250.000", "250.000 - 450.000", "450.000 +"], label: "Price (pounds)", selected: params[:search].try(:[],:price) %></div>
     <% else %>

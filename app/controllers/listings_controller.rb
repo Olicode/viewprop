@@ -12,7 +12,6 @@ class ListingsController < ApplicationController
     if params[:search] && params[:search][:address].present?
       @listings = @listings.search_by_address(params[:search][:address])
     end
-
     if params[:search] && params[:search][:price].present?
       if params[:search][:price] == "< 70.000"
         @listings = @listings.where("price < ?", 70000)

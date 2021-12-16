@@ -1,7 +1,13 @@
-.booking {
+.container.booking {
 	background-color: $light-grey;
-	padding: 12px;
+	padding: 38px;
 	border-radius: 8px;
+	margin-bottom: 30px;
+}
+
+.booking-show {
+	width: 70%;
+	margin-top: 30px;
 }
 
 label {
