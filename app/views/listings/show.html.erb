@@ -23,7 +23,7 @@
           <div class="booking_btn"><%= render 'shared/booking_form' %></div>
 
           <% if @listing.user != current_user %>
-            <div><%= link_to "Send a message to #{@listing.user.first_name}", conversation_path(@conversation, from: @listing.id), class:"btn btn-outline-dark" %></div>
+            <div><%= link_to "Send a message to #{@listing.user.first_name}", conversation_path(@conversation), class:"btn btn-outline-dark" %></div>
           <% end %>
 
       <% end %>
