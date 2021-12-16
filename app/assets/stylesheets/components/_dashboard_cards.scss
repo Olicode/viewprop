@@ -1,157 +1,157 @@
 //top left one
 .offer-container {
-  margin-bottom: 10px;
-  padding: 2px;
-  justify-content: center;
-  align-items: center;
+	margin-bottom: 10px;
+	padding: 2px;
+	justify-content: center;
+	align-items: center;
 }
 .offer-cards {
-  background-color: white;
-  overflow: hidden;
-  overflow-y: scroll;
-  height: 240px;
-  padding: 6px;
-  border-radius: 6px;
-  box-shadow: 0 0 20px $light-grey;
+	background-color: white;
+	overflow: hidden;
+	overflow-y: scroll;
+	height: 240px;
+	padding: 6px;
+	border-radius: 6px;
+	box-shadow: 0 0 20px $light-grey;
 }
 
 .offer-card {
-  box-shadow: 0 0 5px $light-grey;
-  background: $light;
-  width: 300px;
-  height: 180px;
-  border-radius: 3px;
-  margin-bottom: 6px;
-  p {
-    margin-bottom: 2px;
-  }
-  a {
-    color: $dark;
-    font-weight: bold;
-    text-decoration: underline;
-  }
+	box-shadow: 0 0 5px $light-grey;
+	background: $light;
+	width: 300px;
+	height: 180px;
+	border-radius: 3px;
+	margin-bottom: 6px;
+	p {
+		margin-bottom: 2px;
+	}
+	a {
+		color: $dark;
+		font-weight: bold;
+		text-decoration: underline;
+	}
 }
 
 .response {
-  margin-top: 3px;
-  color: black;
-  opacity: 0.5;
-  text-align: center;
+	margin-top: 3px;
+	color: black;
+	opacity: 0.5;
+	text-align: center;
 }
 
 .accept-button {
-  margin-right: 4px;
+	margin-right: 4px;
 }
 
 .counter-button {
-  margin-bottom: 2px;
-  margin-top: 2px;
+	margin-bottom: 2px;
+	margin-top: 2px;
 }
 
 //middle one
 .booking-notification-cards {
-  background-color: white;
-  overflow: hidden;
-  overflow-y: scroll;
-  height: 500px;
-  padding: 3px;
-  border-radius: 6px;
-  box-shadow: 0 0 20px $light-grey;
+	background-color: white;
+	overflow: hidden;
+	overflow-y: scroll;
+	height: 500px;
+	padding: 3px;
+	border-radius: 6px;
+	box-shadow: 0 0 20px $light-grey;
 }
 
 .offer-booking-card {
-  box-shadow: 0 0 5px $light-grey;
-  background: $light;
-  width: 610px;
-  height: 90px;
-  border-radius: 3px;
-  margin-bottom: 5px;
-  padding: 10px;
-  p {
-    margin-bottom: 2px;
-  }
-  a {
-    color: $dark;
-    font-weight: bold;
-    text-decoration: underline;
-  }
+	box-shadow: 0 0 5px $light-grey;
+	background: $light;
+	width: 610px;
+	height: 90px;
+	border-radius: 3px;
+	margin-bottom: 5px;
+	padding: 10px;
+	p {
+		margin-bottom: 2px;
+	}
+	a {
+		color: $dark;
+		font-weight: bold;
+		text-decoration: underline;
+	}
 }
 
 //bottom
 .listing-cards {
-  .main-container {
-    width: 1000px;
-    background-color: white;
-    overflow: hidden;
-    overflow-x: scroll;
-    padding: 8px;
-    border-radius: 6px;
-    box-shadow: 0 0 20px $light-grey;
-  }
+	.main-container {
+		width: 1000px;
+		background-color: white;
+		overflow: hidden;
+		overflow-x: scroll;
+		padding: 8px;
+		border-radius: 6px;
+		box-shadow: 0 0 20px $light-grey;
+	}
 }
 
 //right
 .notification-cards {
-  background-color: white;
-  overflow: hidden;
-  overflow-y: scroll;
-  height: 1000px;
-  padding: 5px;
-  border-radius: 6px;
-  box-shadow: 0 0 20px $light-grey;
+	background-color: white;
+	overflow: hidden;
+	overflow-y: scroll;
+	height: 1000px;
+	padding: 5px;
+	border-radius: 6px;
+	box-shadow: 0 0 20px $light-grey;
 }
 
 .notification-card {
-  box-shadow: 0 0 5px $light-grey;
-  background: $light;
-  width: 280px;
-  height: 100px;
-  border-radius: 3px;
-  margin-bottom: 5px;
-  padding: 10px;
-  p {
-    margin-bottom: 2px;
-  }
+	box-shadow: 0 0 5px $light-grey;
+	background: $light;
+	width: 280px;
+	height: 100px;
+	border-radius: 3px;
+	margin-bottom: 5px;
+	padding: 10px;
+	p {
+		margin-bottom: 2px;
+	}
 }
 
 //title
 .italic {
-  font-style: italic;
+	font-style: italic;
 }
 
 .dashboard-title {
-  // opacity: 0.6;
-  color: $dark-grey;
-  // font-weight: bolder;
-  // background-color: rgb(211, 226, 248);
-  // padding-top: 3px;
-  // padding-bottom: 3px;
-  // padding-left: 10px;
-  // padding-right: 10px;
-  // border-radius: 6px;
+	// opacity: 0.6;
+	color: $dark-grey;
+	// font-weight: bolder;
+	// background-color: rgb(211, 226, 248);
+	// padding-top: 3px;
+	// padding-bottom: 3px;
+	// padding-left: 10px;
+	// padding-right: 10px;
+	// border-radius: 6px;
 }
 
 //button
 .dashboard-button {
-  // background-color: $dark;
-  a {
-    color: $dark !important;
-  }
+	// background-color: $dark;
+	a {
+		color: $dark !important;
+	}
 
-  a.active {
-    color: white !important;
-    background-color: $dark !important;
-  }
+	a.active {
+		color: white !important;
+		background-color: $dark !important;
+	}
 }
 
 //status
 
 .accepted {
-  color: $green;
+	color: $green;
 }
 
 .rejected {
-  color: #DE541E;
+	color: #de541e;
 }
 
 // .pending {
@@ -161,18 +161,27 @@
 //links
 
 .links {
-  a {
-    text-decoration: underline;
-    color: $dark !important;
-  }
+	a {
+		text-decoration: underline;
+		color: $dark !important;
+	}
+}
+
+.links2 {
+	a {
+		color: $dark !important;
+	}
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 //random container
 .no-seller-container {
-  padding: 20px;
-  border-radius: 10px;
-  width: 95%;
-  height: 40vh;
-  background-color: $light;
-  box-shadow: 0 0 20px $light-grey;
+	padding: 20px;
+	border-radius: 10px;
+	width: 95%;
+	height: 40vh;
+	background-color: $light;
+	box-shadow: 0 0 20px $light-grey;
 }
