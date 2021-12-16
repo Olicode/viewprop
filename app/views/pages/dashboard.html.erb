@@ -2,10 +2,10 @@
   <h1 class="text-dark">Welcome, <span class="italic"><%= current_user.first_name.capitalize %></span></h1>
   <ul class="nav nav-pills" id="myTab" role="tablist">
     <li class="nav-item dashboard-button" role="presentation">
-      <a class="nav-link active" id="seller-tab" data-toggle="tab" href="#seller" role="tab" aria-controls="seller" aria-selected="true">Your Listings</a>
+      <a class="nav-link active" id="buyer-tab" data-toggle="tab" href="#buyer" role="tab" aria-controls="buyer" aria-selected="true">Your Purchases</a>
     </li>
     <li class="nav-item dashboard-button" role="presentation">
-      <a class="nav-link" id="buyer-tab" data-toggle="tab" href="#buyer" role="tab" aria-controls="buyer" aria-selected="false">Your Purchases</a>
+      <a class="nav-link" id="seller-tab" data-toggle="tab" href="#seller" role="tab" aria-controls="seller" aria-selected="false">Your Listings</a>
     </li>
   </ul>
   <div class="tab-content mt-5" id="myTabContent">
