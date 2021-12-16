@@ -17,3 +17,12 @@ label {
 .booking_btn {
 	width: 260px;
 }
+
+.show-container {
+  background-color: $light;
+  box-shadow: 0 0 20px $light-grey;
+  width: 100%;
+  height: 100vh;
+  padding: 50px;
+  border-radius: 10px;
+}
