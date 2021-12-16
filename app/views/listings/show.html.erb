@@ -11,7 +11,7 @@
 
   <%# buttons %>
   <% if @listing.user == current_user %>
-    <button type="button" class="btn btn-lg btn-light mb-4"> <%= link_to "Edit", edit_listing_path(@listing) %></button>
+    <button type="button" class="btn btn-outline-dark links3 mb-2"> <%= link_to "Edit this listing", edit_listing_path(@listing) %></button>
   <% else %>
     <div class="booking-offer-buttons d-flex">
       <% if @listing.sold %>

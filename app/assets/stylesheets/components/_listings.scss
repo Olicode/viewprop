@@ -6,3 +6,36 @@
 i {
 	margin: 0px 2px;
 }
+
+.btn-outline-dark.links3 {
+	a {
+		color: $dark;
+		&:hover {
+			color: $light-grey;
+			text-decoration: none;
+		}
+	}
+}
+
+.edit-listing {
+	height: 86vh;
+	width: 80%;
+	background-color: rgb(235, 235, 235);
+	padding: 16px;
+	border-radius: 8px;
+	.nav {
+		background-color: rgb(235, 235, 235);
+	}
+	.nav-item {
+		background-color: $grey !important;
+		margin-right: 4px;
+		border-radius: 4px;
+		color: rgb(107, 103, 103);
+		&:hover {
+			color: $dark;
+		}
+	}
+	.active {
+		color: $dark !important;
+	}
+}
