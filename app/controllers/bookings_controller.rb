@@ -7,6 +7,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @listing = Listing.find(params[:listing_id])
+    if @listing.instant_booking
+      @booking.status = "Accepted"
+    end
     @booking.listing = @listing
     @booking.user = current_user
     @booking.keycode = keycode
