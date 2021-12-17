@@ -44,7 +44,7 @@
                                 <%= link_to offer_path(offer, accept: true), method: :patch do %>
                                   <button type="button" class="btn btn-outline-secondary accept-button" style="width: 132px">Accept</button>
                                 <% end %>
-                                <%= link_to offer_path(offer, { offer: { seller_confirmed: false, buyer_confirmed: false } }), method: :patch do %>
+                                <%= link_to offer_path(offer, reject: true), method: :patch do %>
                                   <button type="button" class="btn btn-outline-secondary mb-3" style="width: 132px">Reject</button>
                               </div>
                               <% end %>
@@ -190,7 +190,7 @@
                                 <%= link_to offer_path(offer, accept: true), method: :patch do %>
                                   <button type="button" class="btn btn-outline-secondary accept-button" style="width: 132px">Accept</button>
                                 <% end %>
-                                <%= link_to offer_path(offer, { offer: { seller_confirmed: false, buyer_confirmed: false } }), method: :patch do %>
+                                <%= link_to offer_path(offer, reject: true), method: :patch do %>
                                   <button type="button" class="btn btn-outline-secondary mb-3" style="width: 132px">Reject</button>
                               </div>
                               <% end %>

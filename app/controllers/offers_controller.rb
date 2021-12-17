@@ -32,6 +32,11 @@ class OffersController < ApplicationController
       @offer.seller_confirmed = true
       Notification.create(user: @offer.listing.user, offer: @offer, content: "Offer for #{@listing.title} has been accepted. Please proceed to payment.", seller: false)
       Notification.create(user: @offer.user, offer: @offer, content: "Offer for #{@listing.title} has been accepted. Please wait for payment.", seller: true)
+    elsif params[:reject].present?
+      @offer.buyer_confirmed = false
+      @offer.seller_confirmed = false
+      Notification.create(user: @offer.listing.user, offer: @offer, content: "Your offer for #{@listing.title} has been rejected.", seller: false)
+      Notification.create(user: @offer.user, offer: @offer, content: "Your offer for #{@listing.title} has been rejected.", seller: true)
     elsif @offer.listing.user == current_user
       @offer.buyer_confirmed = false
       @offer.seller_confirmed = true
